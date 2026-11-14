@@ -1,0 +1,44 @@
+{
+  "name": "annes-keep",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Anne's Keep: an original open-source preservation workbench that knows what files you hold, where every copy is and whether each still opens, makes verified copies in lasting formats, and hands the whole thing to whoever comes next. Part of the Anne's Office suite. Planning stage.",
+  "keywords": [
+    "annes-keep",
+    "annes-office-suite",
+    "digital-preservation",
+    "personal-archiving",
+    "fixity",
+    "checksum",
+    "file-format-identification",
+    "format-risk",
+    "format-migration",
+    "backup-verification",
+    "records-management",
+    "retention",
+    "digital-legacy",
+    "finding-aid",
+    "data-recovery",
+    "genealogy",
+    "ai-assistant",
+    "office-suite",
+    "offline",
+    "clean-room"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Paul D Pruitt"
+  },
+  "homepage": "https://github.com/socrtwo/annes-keep",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/socrtwo/annes-keep.git"
+  },
+  "bugs": {
+    "url": "https://github.com/socrtwo/annes-keep/issues"
+  },
+  "scripts": {
+    "plan": "python3 scripts/gen-plan.py",
+    "validate": "python3 scripts/gen-plan.py --check"
+  }
+}

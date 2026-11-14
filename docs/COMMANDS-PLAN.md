@@ -1,0 +1,719 @@
+# Command plan
+
+> **Plan. Generated file:** edit [commands-plan.src.txt](commands-plan.src.txt) and run `python3 scripts/gen-plan.py`. Anne's Keep has no code yet; this is the inventory the command registry will be built from. A command is registered in the app only when it works.
+
+**319 commands** on 15 tabs. Every command can go on the Quick Access Bar, on a custom tab, in the classic menu bar, on a keyboard shortcut or in a macro, and is found by command search (Alt+Q). The classic menu bar has one menu per tab, including an **AI** menu. Shortcuts are planned defaults and can all be rebound.
+
+## Origins
+
+| Code | Meaning |
+|---|---|
+| NEW | An Anne's Keep idea |
+| SUITE | Shared with the other Anne's Office apps (shell, files, AI providers, recovery) |
+| ARC | Archival practice (accession and custody records, original order, arrangement and description, finding aids, appraisal, restrictions) |
+| DP | Digital-preservation practice (fixity, format identification and format risk, migration, preservation events, packaging) |
+| BAK | Backup practice (several copies on different media in different places, verify after writing, restore drills, media rotation) |
+| RM | Records-management practice (retention rules, holds, review, release with a record) |
+| LIB | Library cataloguing practice (descriptive fields, agreed forms of names, subject lists) |
+| RCV | Data-recovery practice (disk images, read-only handling, salvage of damaged files, old encodings) |
+| EST | Estate and succession practice (inventories, letters of instruction, handing files to heirs and successors) |
+| GENAI | Generative AI assistants |
+
+## Tabs
+
+| Tab | Commands | What it is for |
+|---|---|---|
+| [File](#file) | 28 | Create, open, save, protect, print and close holdings; the holding's policy; options |
+| [Home](#home) | 23 | Editing basics and the everyday loop: go to the next thing that needs attention and deal with it |
+| [Take In](#take-in) | 24 | Bring files, folders, old disks, accounts and other people's papers into the holding, and record where each came from |
+| [Describe](#describe) | 24 | Say what each thing is, so that someone who never met you can find it and understand it |
+| [Assess](#assess) | 26 | Tests the app computes itself, without AI: what is this, does it open, is it whole, what threatens it |
+| [Copies](#copies) | 23 | Where the copies are, what they are on, and whether each one is still good |
+| [Renditions](#renditions) | 24 | Make copies in formats likely to stay readable, and test that each one still says what the original says |
+| [Retain](#retain) | 20 | Decide how long to keep things, hold what must not go, and let go on the record |
+| [Hand Over](#hand-over) | 20 | Make the holding usable by someone else: a guide, a packet, a deposit, and a plain account of what is here and how to open it |
+| [Review](#review) | 13 | Look after a holding with other people: comment, assign, sign off, combine |
+| [View](#view) | 25 | Panes, layouts and pictures of the holding |
+| [Tools](#tools) | 15 | Macros, batch work and connections to the other apps |
+| [AI](#ai) | 36 | Optional helpers that describe, sort and draft. They propose; they never decide, and they never touch a file. See AI-PLAN.md |
+| [Developer](#developer) | 8 | Scripting and the holding's data, for people who want to build on it |
+| [Help](#help) | 10 | Help, examples and about |
+
+## File
+
+Create, open, save, protect, print and close holdings; the holding's policy; options.
+
+### New
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| New Holding… | `file.new` | `Ctrl+N` | SUITE | an empty holding: no items, no places |
+| New Holding from Folder… | `file.newFromFolder` |  | NEW | every file under a folder becomes an item where it lies; nothing is moved or changed; the subfolders become the first arrangement |
+| New Holding from Template… | `file.newFromTemplate` |  | NEW | family archive, household papers, a writer's or researcher's files, a small organization's records, a photograph collection, a finished project; each sets a copy rule, an audit interval and lasting-format choices that you can change |
+| New Holding from Manifest… | `file.newFromManifest` |  | DP, NEW | starts from a checksum list or a packaged folder made elsewhere, and verifies it first |
+| New Holding for Someone Else's Files… | `file.newEstate` |  | EST, NEW | for files that came to you after a death or a handover; records who gave you what and when, before anything is opened |
+
+### Open
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Open… | `file.open` | `Ctrl+O` | SUITE | recognizes the format by content |
+| Open and Repair… | `file.openRepair` |  | SUITE | rebuilds a damaged holding from its journal and from the catalog copies kept at each place; see ARCHITECTURE-PLAN.md |
+| Open Read-Only… | `file.openReadOnly` |  | SUITE |  |
+| Recent Holdings | `file.openRecent` |  | SUITE |  |
+| Pinned Holdings | `file.pinned` |  | SUITE |  |
+| Open in New Window | `file.newWindow` | `Ctrl+Shift+N` | SUITE | two holdings side by side |
+| Show in Folder | `file.revealInFolder` |  | SUITE |  |
+
+### Save
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Save | `file.save` | `Ctrl+S` | SUITE | every change is journaled as it is made; Save writes the file |
+| Save As… | `file.saveAs` | `F12` | SUITE |  |
+| Save a Copy… | `file.saveCopy` |  | SUITE |  |
+| Save Catalog to Every Place | `file.saveEverywhere` |  | NEW | writes the current catalog beside each reachable copy, so that the holding can be rebuilt from any place that survives |
+| Versions… | `file.versions` |  | SUITE | named snapshots of the catalog; compare or restore |
+
+### Print and send
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Print… | `file.print` | `Ctrl+P` | SUITE |  |
+| Print Preview | `file.printPreview` | `Ctrl+F2` | SUITE |  |
+| Export… | `file.export` |  | SUITE | see FORMATS-PLAN.md |
+| Send… | `file.send` |  | SUITE | through Anne's Post or the system share sheet |
+
+### Holding
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Holding Properties… | `file.properties` |  | SUITE, ARC | title, whose files these are, what the holding is for, who looks after it |
+| Holding Policy… | `file.policy` |  | DP, BAK, NEW | the copy rule, the audit interval, which formats count as lasting, and which risks count as High |
+| Holding Statistics | `file.statistics` |  | NEW | items by status and by format, total size, copies by place, risks by kind, audits done and due |
+| Protect Holding… | `file.protect` |  | SUITE | password encryption of the catalog file; the items themselves are not touched |
+| Options… | `file.options` |  | SUITE |  |
+| Close | `file.close` | `Ctrl+W` | SUITE |  |
+| Exit | `file.exit` |  | SUITE |  |
+
+## Home
+
+Editing basics and the everyday loop: go to the next thing that needs attention and deal with it.
+
+### Clipboard
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Cut | `edit.cut` | `Ctrl+X` | SUITE | in descriptions and notes |
+| Copy | `edit.copy` | `Ctrl+C` | SUITE |  |
+| Paste | `edit.paste` | `Ctrl+V` | SUITE |  |
+| Copy Description | `edit.copyDescription` | `Ctrl+Shift+C` | ARC | the selected item's catalog entry as text |
+| Copy Fingerprint | `edit.copyFingerprint` |  | DP | the SHA-256 of the selected item, for comparing by hand or for sending to someone who holds a copy |
+| Paste Description | `edit.pasteDescription` |  | NEW | applies copied catalog fields to the selected items; what would be overwritten is listed first |
+
+### Undo
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Undo | `edit.undo` | `Ctrl+Z` | SUITE | undoes changes to the catalog; a copy already written to a place is removed only by its own command |
+| Redo | `edit.redo` | `Ctrl+Y` | SUITE |  |
+| History… | `edit.history` |  | SUITE | the journal: who changed what and when |
+
+### Find
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Find… | `edit.find` | `Ctrl+F` | SUITE | in the active pane |
+| Find in Whole Holding… | `edit.findAll` | `Ctrl+Shift+F` | NEW | names, descriptions, the text inside items, notes, formats and fingerprints at once |
+| Replace… | `edit.replace` | `Ctrl+H` | SUITE | in descriptions and notes only; items are never changed |
+| Go To… | `edit.goTo` | `Ctrl+G` | SUITE | an item number, a place, a date |
+| Select Similar | `edit.selectSimilar` |  | NEW | every item with the same format, status, risk or place as the selected one |
+
+### Work queue
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Next Item Needing Attention | `nav.nextAttention` | `F8` | NEW | the next Damaged, Missing, At Risk or Stale item, worst first |
+| Previous Item Needing Attention | `nav.prevAttention` | `Shift+F8` | NEW |  |
+| Next Unassessed Item | `nav.nextUnassessed` | `Ctrl+F8` | NEW |  |
+| Next Undescribed Item | `nav.nextUndescribed` | `Ctrl+Shift+F8` | NEW | no title, no date or no description |
+| Show Copies of Item | `nav.showCopies` | `Ctrl+J` | NEW | where every copy of the selected item is, and when each was last verified |
+| Show Renditions of Item | `nav.showRenditions` | `Ctrl+Shift+J` | NEW |  |
+| Back | `nav.back` | `Alt+Left` | SUITE |  |
+| Forward | `nav.forward` | `Alt+Right` | SUITE |  |
+| Due Today | `nav.today` |  | NEW | audits, places to verify, holds that end and keep-until dates that have been reached |
+
+## Take In
+
+Bring files, folders, old disks, accounts and other people's papers into the holding, and record where each came from.
+
+### Add
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Add Files… | `intake.addFiles` | `Ctrl+Shift+O` | NEW | the files stay where they are; each is fingerprinted and never altered |
+| Add Folder… | `intake.addFolder` |  | NEW |  |
+| Watch Folder… | `intake.watch` |  | NEW, BAK | new and changed files in a folder are offered to the holding; nothing is taken in silently |
+| Add from Scanner or Camera… | `intake.scan` |  | SUITE | through Anne's Lens; the original image is kept |
+| Add from Another Device… | `intake.fromDevice` |  | NEW | a phone, a camera, a card or a drive; lists what is new since the last time |
+| Add Mailbox… | `intake.mailbox` |  | NEW | a mailbox file, or an account folder through Anne's Post; messages and attachments become items in a group |
+| Capture Web Site… | `intake.captureWeb` |  | DP, NEW | saves pages as they are now, with their pictures and the time, through Anne's Loom; for your own site or for pages you rely on |
+| Add Account Export… | `intake.accountExport` |  | NEW | the archive file a web service gives you when you ask for your data; its parts are listed and identified |
+| Add Item with No File… | `intake.addPhysical` |  | ARC | a box, an album, a tape, a paper file; described and located like any other item, so that the holding also covers what is not digital |
+
+### Old media
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Read Disk Image… | `intake.diskImage` |  | RCV | opens an image of a floppy disk, a hard disk, a card or an optical disc read-only and lists its files, including deleted ones that the suite recovery engines can find |
+| Make Disk Image… | `intake.makeImage` |  | RCV | desktop builds; copies a whole card or drive to an image file before anything else is done, and fingerprints it |
+| Open Archive File… | `intake.openArchive` |  | SUITE | ZIP, TAR and older archive formats; damaged ones through the suite's ZIP salvage; the archive stays an item and its contents become parts |
+| Old Text Encodings… | `intake.encodings` |  | RCV, NEW | file names and text in older character sets shown correctly; the bytes are not changed |
+| Unidentified Files… | `intake.unknown` |  | DP, RCV | the files no rule could identify, with what is known about each: first bytes, readable strings, size, date, neighbors |
+
+### Record
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Accession Record… | `intake.accession` |  | ARC | what came in, from whom, when and on what terms; one record for each batch |
+| Custody Note… | `intake.custody` |  | ARC, RCV | who held these files before you and how they reached you |
+| Keep Original Order | `intake.originalOrder` |  | ARC | the folder layout as it arrived is recorded, however the items are arranged later |
+| Mark as Held for Someone Else… | `intake.thirdParty` |  | NEW | files you hold for another person; their wishes and how to reach them are recorded |
+
+### Sort out
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Find Duplicates | `intake.duplicates` |  | DP, NEW | identical files by fingerprint; the same content in different containers is listed separately as likely duplicates |
+| Find Versions | `intake.versions` |  | NEW | drafts and later saves of the same work, by name, date and shared content; grouped, never merged |
+| Group as One Item… | `intake.group` | `Ctrl+Shift+G` | ARC, NEW | files that make sense only together: a page layout and its pictures, a web site folder, a database and its attachments |
+| Ungroup | `intake.ungroup` |  | NEW |  |
+| Leave Out… | `intake.exclude` |  | NEW | patterns for files that are never taken in: caches, thumbnails, system files; the list is shown and can be changed |
+| Refresh from Disk | `intake.refresh` | `F5` | NEW | re-reads the folders the holding covers; new, changed, moved and vanished files are listed |
+
+## Describe
+
+Say what each thing is, so that someone who never met you can find it and understand it.
+
+### Catalog
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Description… | `describe.details` | `Alt+Enter` | ARC, LIB | title, who made it, dates, what it is, how much there is, language |
+| People and Organizations… | `describe.names` |  | LIB | names in one agreed form with their variants kept; can be linked to persons in an Anne's Chart tree |
+| Places Named… | `describe.places` |  | LIB | the places an item is about, as distinct from the places where its copies are stored |
+| Subjects and Tags… | `describe.subjects` |  | LIB |  |
+| Dates… | `describe.dates` |  | ARC | exact, approximate, a range, or before and after; the file's own dates are kept separately and never overwritten |
+| Rights and Restrictions… | `describe.rights` |  | ARC | who holds the rights as far as you know, who may see the item and from when |
+| Add Note… | `describe.note` |  | SUITE |  |
+| Fill Down | `describe.fillDown` | `Ctrl+D` | SUITE, NEW | copies a field to the selected items |
+
+### Arrange
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Arrangement | `describe.arrangement` |  | ARC | the holding as groups within groups; an item appears once, wherever its files are |
+| New Group… | `describe.newGroup` |  | ARC |  |
+| Move to Group… | `describe.move` |  | ARC | changes the arrangement only; no file moves |
+| Inherit Description | `describe.inherit` |  | ARC, NEW | a group's creator, dates, rights and restrictions apply to everything in it unless an item says otherwise |
+| Number Items… | `describe.number` |  | ARC | reference numbers that stay the same when items are rearranged |
+| Sort and Filter… | `describe.filter` | `Ctrl+Shift+L` | SUITE | by status, format, date, place, group, risk or any catalog field |
+
+### From the files
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Read Embedded Details | `describe.readEmbedded` |  | NEW | titles, authors, dates, captions, keywords and map positions already inside the files, shown beside your own description |
+| Use Embedded Details… | `describe.useEmbedded` |  | NEW | copies chosen fields into the catalog; the file is not changed |
+| Describe from File Names… | `describe.fromNames` |  | NEW | a pattern pulls dates, numbers and names out of file and folder names |
+| Recognize Text (OCR) | `describe.ocr` |  | SUITE | the suite OCR engine; the text is an aid for search, the picture stays the item |
+| Extract Text for Search | `describe.extractText` |  | SUITE | through the sister apps' readers |
+| Link to Person in Tree… | `describe.linkPerson` |  | NEW | an Anne's Chart person or a GEDCOM record |
+
+### Quality
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Description Check | `describe.check` |  | ARC, NEW | items with no title, no date, no creator or no rights note; groups about which nothing is said |
+| Name Authority… | `describe.authority` |  | LIB | merges spellings of the same person, place or organization |
+| Controlled Lists… | `describe.lists` |  | LIB | your own lists of subjects, record types and places |
+| Mark as Confidential | `describe.confidential` |  | NEW | left out of handover packets unless you say otherwise, and out of every AI request |
+
+## Assess
+
+Tests the app computes itself, without AI: what is this, does it open, is it whole, what threatens it.
+
+### Run
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Assess All | `assess.all` | `F9` | NEW | every check below; results in the Risks pane |
+| Assess Selection | `assess.selection` | `Shift+F9` | NEW |  |
+| Assess on Take-In | `assess.onIntake` |  | NEW | toggle; default on |
+| Stop Assessment | `assess.stop` |  | SUITE | long runs can be paused and resumed |
+
+### What it is
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Identify Format | `assess.identify` |  | DP | by content: signatures and structure, not the file extension; the rule that matched is shown |
+| Extension Mismatch | `assess.extension` |  | DP | files whose name says one format and whose content is another |
+| Format Census | `assess.census` |  | DP, NEW | how many items and how much data there are in each format and version |
+| Format Notes | `assess.formatNotes` |  | DP, NEW | for the selected format: whether its specification is public, what reads it, what it depends on, how old it is |
+
+### Whether it opens
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Open Check | `assess.open` |  | NEW | each item is read by the suite's reader for its type; items that fail, or that open only in part, are listed with the reason |
+| Structure Check | `assess.structure` |  | DP | the format's own rules: a well-formed container, a complete index, lengths that agree with what is stated |
+| Lock Check | `assess.locks` |  | DP, NEW | passwords, encryption and usage restrictions; such items cannot be kept readable without the key |
+| Dependency Check | `assess.dependencies` |  | DP, NEW | fonts that are not embedded, pictures and data linked from other files, macros, pages that load from the web |
+| Completeness Check | `assess.complete` |  | NEW | a group has every part it refers to; a numbered series has no gaps |
+
+### Whether it is whole
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Fixity Check | `assess.fixity` |  | DP | every reachable copy is hashed again and compared with its recorded fingerprint |
+| Damage Report | `assess.damage` |  | RCV, NEW | for an item that no longer matches or no longer opens: which part is affected and which copy is intact |
+| Date Check | `assess.dates` |  | NEW | file dates, embedded dates and described dates that cannot all be right |
+
+### What threatens it
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Format Risk | `assess.formatRisk` |  | DP, NEW | each format rated from stated facts in the format register, with the reasons listed |
+| Copy Rule Check | `assess.copyRule` |  | BAK, NEW | items with fewer copies, fewer kinds of medium or fewer places than the policy asks for |
+| Media Age Check | `assess.mediaAge` |  | BAK, DP | copies on media older than the service life you set for that kind |
+| File Name Check | `assess.names` |  | DP | names that will not survive a move to another system: reserved characters, length, names that differ only by case, mixed Unicode forms |
+| Single Point Check | `assess.singlePoint` |  | NEW | everything that would be lost if one named place, device, account or password were lost |
+| Stranger Test | `assess.stranger` |  | NEW | for each item: could a person with no special software read it, with a text editor, a web browser or an unzip tool? The share of the holding that passes is shown |
+
+### Risks
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Risk Details… | `assess.riskDetails` |  | NEW | what the risk is, the facts it rests on, and the commands that would reduce it |
+| Accept Risk… | `assess.accept` |  | NEW | you decide to live with a risk; the reason is recorded, and the risk is shown again at every audit |
+| Reopen Risk | `assess.reopen` |  | NEW |  |
+| Edit Format Register… | `assess.register` |  | DP, NEW | the facts behind Format Risk are data that you can read, correct and date |
+
+## Copies
+
+Where the copies are, what they are on, and whether each one is still good.
+
+### Places
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Places… | `copy.places` |  | BAK, NEW | every place a copy can live: this device, a drive, a disc, a cloud folder, a safe, another person's house |
+| New Place… | `copy.newPlace` |  | BAK | name, kind of medium, where it is, who can reach it, when it went into service |
+| Place Details… | `copy.placeDetails` |  | BAK |  |
+| Mark Place as Away from Home | `copy.offsite` |  | BAK | counts toward the away-from-home part of the copy rule |
+| Retire Place… | `copy.retire` |  | BAK, NEW | lists what would be left with too few copies, and refuses until those are copied elsewhere or you say otherwise |
+
+### Make copies
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Send Copy To… | `copy.send` | `Ctrl+Shift+S` | BAK, NEW | writes the selected items to a place, reads them back and compares them before the copy is counted |
+| Complete the Copy Rule… | `copy.fulfill` |  | NEW | works out the fewest copies to write, and where, so that every item meets the policy |
+| Write Manifest | `copy.manifest` |  | DP | a plain-text list of file names and fingerprints beside the copy, readable and checkable without this app |
+| Copy for a Person… | `copy.forPerson` |  | EST, NEW | a chosen part of the holding for one relative or colleague, with its own index |
+| Move Copy… | `copy.move` |  | BAK | copy, verify, then remove the old one; never the other way round |
+
+### Check copies
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Verify Place | `copy.verify` | `Ctrl+Shift+V` | DP, BAK | hashes every file at a place and compares; can be run on any device the place is attached to |
+| Verify by Sample… | `copy.verifySample` |  | BAK, NEW | a random share of a large place now, and the rest over the following runs |
+| Compare Two Places | `copy.compare` |  | BAK | what one has that the other lacks, and what differs |
+| Restore Drill… | `copy.drill` |  | BAK | brings a sample back from a place to a scratch folder and opens it, to show that the copy can really be used |
+| Record Outside Check… | `copy.recordCheck` |  | NEW | someone else verified a copy with its manifest and told you the result |
+
+### Mend
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Heal from Another Copy | `copy.heal` |  | DP, NEW | replaces a damaged copy with a verified intact one; the damaged file is set aside, not deleted, until you say so |
+| Find Moved Files | `copy.relink` |  | NEW | files that were renamed or moved are recognized by fingerprint and relinked |
+| Report Lost Place… | `copy.lost` |  | BAK, NEW | a drive failed, a disc is unreadable, an account was closed: every copy there is marked gone and the copy rule is checked again |
+| Recovery Records… | `copy.recoveryRecords` |  | DP, NEW | extra data stored beside a copy, from which a limited amount of damage can be repaired without another copy |
+
+### Schedule
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Audit Schedule… | `copy.schedule` |  | DP, BAK | how often each place is verified; reminders through Anne's Post or the system calendar |
+| Run Audit Now | `copy.audit` | `Ctrl+F9` | DP | verifies what is due, assesses the risks again and writes an audit record |
+| Audit Records | `copy.auditRecords` |  | DP | every audit: who ran it, what was checked, what was found, what was done |
+| Media Log… | `copy.mediaLog` |  | BAK | each drive and disc: bought, first used, errors seen, replaced |
+
+## Renditions
+
+Make copies in formats likely to stay readable, and test that each one still says what the original says.
+
+### Plan
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Rendition Plan… | `rendition.plan` |  | DP, NEW | for the selection: which formats would be made from which, by which writer, what each is known to lose, and the space needed |
+| Lasting Formats… | `rendition.targets` |  | DP | the holding's choice of target format for each kind of content |
+| Dry Run | `rendition.dryRun` |  | NEW | converts a sample and reports the comparison before anything is added to the holding |
+| What Would Be Lost… | `rendition.lossPreview` |  | NEW | the known limits of a conversion, stated before it runs: the features the target format cannot hold |
+
+### Make
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Make Rendition… | `rendition.make` | `Ctrl+R` | DP, NEW | writes a new file in a lasting format through the sister app that owns the type; the original is kept and never changed |
+| Make Plain-Text Rendition | `rendition.text` |  | DP, NEW | the words alone, in UTF-8, as the rendition of last resort |
+| Make Page-Image Rendition | `rendition.pageImages` |  | DP | one picture for each page, for documents whose look matters and whose format is at risk |
+| Make Reading Copy… | `rendition.access` |  | ARC | a small, convenient copy for everyday use, kept apart from the preservation copy |
+| Embed What It Depends On… | `rendition.embed` |  | DP, NEW | a rendition with its fonts, linked pictures and linked data inside it |
+| Make File Names Safe… | `rendition.rename` |  | DP | safe names for the renditions or for a copy; the original names are kept in the catalog |
+| Batch Make… | `rendition.batch` |  | SUITE, NEW | runs a plan over many items; can be paused and resumed |
+
+### Compare
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Sameness Check | `rendition.compare` | `Ctrl+Shift+R` | NEW | compares a rendition with its original by content: words, page count, pixels, cell values and formula results, rows, playing time; no AI |
+| Loss Statement | `rendition.lossStatement` |  | NEW | what the comparison found different, item by item, in plain words |
+| Accept Loss… | `rendition.acceptLoss` |  | NEW | you decide that a rendition is good enough; the differences you accepted are recorded with it |
+| Reject Rendition | `rendition.reject` |  | NEW | the rendition is removed from the holding and the reason is kept |
+| View Side by Side | `rendition.sideBySide` |  | NEW | original and rendition together, with the differences marked |
+| Round-Trip Check | `rendition.roundTrip` |  | DP, NEW | convert, convert back, and compare with the original |
+
+### Repair
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Repair Item… | `rendition.repair` |  | SUITE, RCV | hands a damaged file to the suite recovery engine of its type; the repaired file is added as a rendition and the damaged original stays |
+| Recover Text Only | `rendition.salvageText` |  | RCV | whatever words can still be read from a file that will not open |
+| Recover Pictures Only | `rendition.salvagePictures` |  | RCV | through Anne's Lens |
+| Repair Report | `rendition.repairReport` |  | RCV, NEW | what was recovered, what was not, and how the repaired file differs from the damaged one |
+
+### Lineage
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Rendition Lineage | `rendition.lineage` |  | DP, NEW | which file was made from which, by what tool and version, and when |
+| Replace Rendition… | `rendition.replace` |  | NEW | a better conversion exists; the earlier one is kept in history |
+| Set as Preservation Copy | `rendition.setMaster` |  | ARC, DP | which file of an item the copy rule and the audits protect first |
+
+## Retain
+
+Decide how long to keep things, hold what must not go, and let go on the record.
+
+### Rules
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Keep Until… | `retain.until` |  | RM | a date, an event (so many years after filing, when a matter closes) or always |
+| Retention Rules… | `retain.rules` |  | RM | rules by group or record type; the app ships with none that state a legal period |
+| Apply Rule… | `retain.apply` |  | RM |  |
+| Why Is This Kept? | `retain.why` |  | NEW | the rule, hold or note that explains an item's keep-until date |
+| Worth Keeping… | `retain.appraise` |  | ARC | a recorded judgment of the lasting value of an item or group, and the reason |
+
+### Hold
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Place Hold… | `retain.hold` |  | RM | nothing under a hold can be released or have its copies reduced, whatever its date |
+| Lift Hold… | `retain.liftHold` |  | RM | records who lifted it and why |
+| Show Holds | `retain.holds` |  | RM |  |
+
+### Review
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Due for Review | `retain.due` |  | RM | items whose keep-until date has passed; nothing happens to them without you |
+| Extend… | `retain.extend` |  | RM |  |
+| Review Calendar | `retain.calendar` |  | RM, NEW |  |
+
+### Let go
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Release… | `retain.release` |  | RM, ARC, NEW | a decision not to keep an item any longer; the reason, the date and the fingerprint stay in the catalog |
+| Release Duplicates… | `retain.releaseDuplicates` |  | NEW | only byte-identical files, only after a fresh fixity check, and never the last copy |
+| Remove Released Files… | `retain.remove` |  | RM | deletes the files of released items from the places you choose, after a count and a confirmation |
+| Release Record | `retain.record` |  | RM | a list of what was released, when, by whom and why, with fingerprints |
+| Restore Released Item | `retain.restore` |  | NEW | possible while a copy still exists anywhere |
+| Transfer Out… | `retain.transfer` |  | ARC | the item went to someone else: a relative, an archive, a successor; the holding remembers where |
+
+### Private things
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Restrict Until… | `retain.restrict` |  | ARC | not to be opened or passed on before a date or an event |
+| Living People… | `retain.living` |  | NEW | marks items about living people by the suite's rule, so that they can be left out of what is shared |
+| Sensitive Patterns… | `retain.patterns` |  | NEW | account numbers, identity numbers and the like, found on the device by the app's own pattern rules |
+
+## Hand Over
+
+Make the holding usable by someone else: a guide, a packet, a deposit, and a plain account of what is here and how to open it.
+
+### Guide
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Finding Aid… | `handover.findingAid` |  | ARC | the arrangement with its descriptions, as a document a stranger can read from the top |
+| Item List… | `handover.itemList` |  | ARC | every item with its number, title, dates, format, size and where its copies are; to Anne's Grid, PDF or print |
+| Format Guide… | `handover.formatGuide` |  | NEW, DP | for each format in the holding: what it is, what opens it today, and where its specification is published |
+| Where Everything Is… | `handover.locations` |  | EST, NEW | every place, what is there and who can reach it; no passwords are written |
+
+### Packet
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Build Handover Packet… | `handover.packet` | `Ctrl+Shift+H` | EST, NEW | a folder that explains itself: a guide as plain text and as a web page that open on any computer, the item list, and the chosen files with their manifest |
+| Letter to Whoever Opens This… | `handover.letter` |  | EST | your own words: what this is, what matters most, what may be thrown away, whom to ask |
+| Keys and Passwords Note… | `handover.keys` |  | EST, NEW | which items are locked and where the key is kept; the app records the whereabouts, not the key |
+| Wishes… | `handover.wishes` |  | EST | who should receive which group; this is not a will, and the packet says so |
+| People to Contact… | `handover.contacts` |  | EST |  |
+| Test Packet as a Stranger | `handover.test` |  | NEW | opens the packet with the holding closed and reports what could not be understood or opened |
+
+### Deposit
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Package for Deposit… | `handover.bag` |  | DP | a package with manifests and descriptive data in the published BagIt layout, for an archive, a library or a successor |
+| Export Catalog… | `handover.exportCatalog` |  | LIB, DP | the descriptions as CSV, JSON or XML with commonly used field names |
+| Gift Checklist… | `handover.gift` |  | ARC | what you are giving and on what terms; a checklist, not a legal document |
+| Record Receipt… | `handover.receipt` |  | ARC, NEW | the receiver verified the manifest and reported back; the transfer is recorded |
+
+### Reports
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Condition Report… | `handover.condition` |  | NEW | the status of every item, the open risks, the accepted risks and the last audit, on one page and in full |
+| Risk Register… | `handover.risks` |  | NEW |  |
+| Copy Map Report… | `handover.copyMap` |  | BAK, NEW | items against places, as a table or as a diagram through Anne's Chart |
+| Audit Report… | `handover.auditReport` |  | DP |  |
+| Change Report… | `handover.changes` |  | NEW | what changed in the holding between two dates |
+| Rendition Report… | `handover.renditions` |  | DP, NEW | every rendition, what it was made from, its comparison and the losses accepted |
+
+## Review
+
+Look after a holding with other people: comment, assign, sign off, combine.
+
+### Comments
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| New Comment | `review.comment` | `Ctrl+Alt+M` | SUITE | on an item, a group, a place or a risk |
+| Show Comments | `review.showComments` |  | SUITE |  |
+| Resolve Comment | `review.resolveComment` |  | SUITE |  |
+| Assign To… | `review.assign` |  | SUITE |  |
+| Flag for Follow-Up | `review.flag` |  | SUITE |  |
+
+### Sign-off
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Mark Described | `review.described` |  | ARC | a person vouches for the description of an item or group |
+| Mark Checked | `review.checked` |  | DP, NEW | a second person confirms an accepted loss, an accepted risk or a release; cleared automatically if the item changes afterward |
+| Review Queue | `review.queue` |  | SUITE, NEW | decisions waiting for you |
+| Two-Person Rule… | `review.twoPerson` |  | RM, NEW | optional: releases and removals need a second person's sign-off |
+
+### Combine
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Compare Holdings… | `review.compare` |  | SUITE, NEW | differences between two copies of a holding |
+| Merge Holdings… | `review.merge` |  | NEW | two people's catalogs of overlapping files, matched by fingerprint, with conflicting descriptions listed |
+| Split Holding… | `review.split` |  | ARC, NEW | a group becomes a holding of its own, for dividing an estate or handing off a project |
+| Import Descriptions… | `review.importDescriptions` |  | NEW | from another holding, matched by fingerprint |
+
+## View
+
+Panes, layouts and pictures of the holding.
+
+### Views
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Shelf | `view.shelf` | `Ctrl+1` | NEW | the arrangement on the left, the items in the middle, description and status on the right |
+| Item View | `view.item` | `Ctrl+2` | NEW | one item shown through the suite's reader for its type, with its copies, renditions and risks |
+| Risk Board | `view.risks` | `Ctrl+3` | NEW | items in columns by status, or risks by kind |
+| Copy Map | `view.copyMap` | `Ctrl+4` | NEW | items down, places across, a mark where a verified copy lies |
+| Calendar | `view.calendar` | `Ctrl+5` | NEW | audits, reviews, holds and restrictions by date |
+| Lineage View | `view.lineage` | `Ctrl+6` | NEW | originals, renditions and repaired files, and what was made from what |
+| Timeline View | `view.timeline` | `Ctrl+7` | ARC | items by the dates they describe |
+| Folder View | `view.folders` | `Ctrl+8` | SUITE | the files as they lie on disk at one place |
+| Split View | `view.split` |  | SUITE | two items, or an original and its rendition, side by side |
+
+### Show
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Risks Pane | `view.risksPane` |  | NEW |  |
+| Details Pane | `view.details` | `F4` | SUITE |  |
+| Preview Pane | `view.preview` |  | SUITE |  |
+| Status Marks… | `view.statusMarks` |  | NEW | a mark, a word and a color for each status; marks are on by default so that color is not the only signal |
+| Thumbnails | `view.thumbnails` |  | SUITE |  |
+| Zoom In | `view.zoomIn` | `Ctrl+=` | SUITE |  |
+| Zoom Out | `view.zoomOut` | `Ctrl+-` | SUITE |  |
+| Fit Page | `view.fitPage` | `Ctrl+0` | SUITE |  |
+| Full Screen | `view.fullScreen` | `F11` | SUITE |  |
+
+### Shell
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Menus | `view.menus` |  | SUITE | ribbon, classic menu bar, or both |
+| Customize Quick Access Bar… | `view.customizeQat` |  | SUITE |  |
+| Add All Choices to Quick Access Bar | `view.qatAddAll` |  | SUITE |  |
+| Customize Ribbon… | `view.customizeRibbon` |  | SUITE |  |
+| Customize Keyboard… | `view.customizeKeyboard` |  | SUITE |  |
+| Search Commands | `view.commandSearch` | `Alt+Q` | SUITE |  |
+| Theme | `view.theme` |  | SUITE | light, dark, high contrast, system |
+
+## Tools
+
+Macros, batch work and connections to the other apps.
+
+### Automate
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Record Macro… | `tools.recordMacro` |  | SUITE |  |
+| Macros… | `tools.macros` | `Alt+F8` | SUITE |  |
+| Rules… | `tools.rules` |  | NEW | your own checks: a pattern, a comparison and a message (for example, every item in one group needs two places away from home) |
+| Background Work… | `tools.jobs` |  | SUITE, NEW | hashing, copying and converting in progress; pause, resume, reorder |
+
+### Suite
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Open Item in Its App | `tools.openInApp` |  | SUITE |  |
+| Send Item List to Anne's Grid | `tools.toGrid` |  | SUITE |  |
+| Send Catalog to Anne's Base | `tools.toBase` |  | SUITE |  |
+| Keep the Sources of a Case… | `tools.fromWitness` |  | NEW | takes the sources of an Anne's Witness case into the holding and keeps the case's fingerprints in step with the holding's |
+| Keep a Family Tree's Media… | `tools.fromChart` |  | NEW | the pictures and documents a tree file refers to, with their links to persons |
+| Reminders to Anne's Post | `tools.reminders` |  | SUITE |  |
+
+### Data
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Import… | `tools.import` |  | SUITE | see FORMATS-PLAN.md |
+| Hash Calculator… | `tools.hash` |  | DP | fingerprints of any file by several algorithms, and comparison with a pasted value |
+| Verify a Manifest… | `tools.verifyManifest` |  | DP | checks any folder against any checksum list, with or without a holding |
+| Spelling… | `tools.spelling` | `F7` | SUITE | in descriptions and notes |
+| Language… | `tools.language` |  | SUITE |  |
+
+## AI
+
+Optional helpers that describe, sort and draft. They propose; they never decide, and they never touch a file. See AI-PLAN.md.
+
+### Ask
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Ask the Holding… | `ai.ask` | `Ctrl+Alt+A` | GENAI, NEW | answers only from the catalog and the text of the items; every sentence names its items, and "not in this holding" is a normal answer |
+| Explain This Format | `ai.explainFormat` |  | GENAI | general knowledge about a format and its history; labeled as opinion and kept apart from the format register |
+| Explain This Risk | `ai.explainRisk` |  | GENAI | the computed risk and its reasons restated in plain words; it adds no facts |
+| Explain Loss Statement | `ai.explainLoss` |  | GENAI | what the listed differences mean for a reader; it cannot change the result of the comparison |
+
+### Describe
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Draft Description | `ai.describe` | `Ctrl+Alt+D` | GENAI, ARC | a proposed title and description from the item's content, shown as a draft beside the fields and marked as AI-written until you accept it |
+| Suggest Dates | `ai.suggestDates` |  | GENAI, NEW | dates that the content itself states; the app must find each one at the spot named before it is shown |
+| Suggest People and Places | `ai.suggestNames` |  | GENAI, NEW | names written in the item, checked the same way; never a name guessed from a face |
+| Describe Picture | `ai.describeImage` |  | GENAI | what is visible; labeled as description |
+| Transcribe | `ai.transcribe` |  | GENAI | handwriting, labels on disks and tapes, notes on the backs of photographs; uncertain words are marked |
+| Summarize Item | `ai.summarize` |  | GENAI | for finding your way; kept apart from the description |
+| Translate Description | `ai.translate` |  | GENAI | labeled as an AI translation |
+
+### Sort
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Suggest Arrangement | `ai.suggestArrangement` |  | GENAI, ARC | proposed groups for a disorderly folder; the original order is kept whatever you accept |
+| Suggest What Belongs Together | `ai.suggestGroups` |  | GENAI, NEW | files that look like parts of one work; proposals for Group as One Item |
+| Find Related Items | `ai.related` |  | GENAI | by meaning, using the on-device index |
+| Suggest Record Types | `ai.suggestTypes` |  | GENAI, RM | letter, invoice, deed, photograph, minutes, so that your retention rules can apply; proposals only |
+| Screen for Private Information | `ai.screenPrivacy` |  | GENAI | runs on the device only |
+
+### Rescue
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Guess Unidentified Format | `ai.guessFormat` |  | GENAI, RCV, NEW | proposes what an unidentified file might be; the guess counts only if the app's own reader for that format then opens the file |
+| Suggest Repair Route | `ai.suggestRepair` |  | GENAI, RCV | which recovery command to try first for this damage; the app runs nothing by itself |
+| Suggest Text Encoding | `ai.suggestEncoding` |  | GENAI, RCV | for garbled old text; the suggestion is tested by decoding, and the bytes are not changed |
+| Read Media Label | `ai.readLabel` |  | GENAI | a photograph of a disk, tape or box label becomes a proposed description |
+
+### Write
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Draft Finding Aid Introduction | `ai.draftFindingAid` |  | GENAI, ARC | from your descriptions only |
+| Draft Format Guide | `ai.draftFormatGuide` |  | GENAI | plain-language notes from the facts in the format register; each sentence points to a register entry |
+| Draft Handover Letter | `ai.draftLetter` |  | GENAI, EST | a first wording from the points you list; it states no wishes that you did not give |
+| Draft Rendition Plan | `ai.draftPlan` |  | GENAI, DP | a plan built only from conversions the app can perform; you edit it and you run it |
+| Draft Condition Summary | `ai.draftCondition` |  | GENAI | the computed statuses and risks in a few paragraphs |
+| Run on Selection… | `ai.runOnSelection` |  | GENAI | your own instruction over the selected descriptions; results are proposals |
+
+### Providers
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Set Up AI… | `ai.setup` |  | SUITE | the suite wizard: on-device, your own computer, free tiers and paid services |
+| Providers and Models… | `ai.providers` |  | SUITE |  |
+| Active AI | `ai.active` |  | SUITE |  |
+| AI and Privacy… | `ai.privacy` |  | SUITE | what each command may send; set for the holding, for a group and for an item |
+| Several AIs | `ai.ensembleMode` |  | SUITE | single, master combines answers, or Quaker consensus |
+| Choose AIs… | `ai.ensembleMembers` |  | SUITE |  |
+| Show AI Discussion | `ai.showDeliberation` |  | SUITE |  |
+| AI History | `ai.history` |  | SUITE | what was sent, where, and what came back |
+| Stop AI | `ai.stop` | `Ctrl+Alt+.` | SUITE |  |
+| Delete Downloaded Models | `ai.deleteModels` |  | SUITE |  |
+
+## Developer
+
+Scripting and the holding's data, for people who want to build on it.
+
+### Script
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Script Editor | `dev.scriptEditor` | `Alt+F11` | SUITE | JavaScript macros against the holding object model |
+| Run Script… | `dev.runScript` |  | SUITE |  |
+| Command Line Options | `dev.commandLine` |  | SUITE | verify a place or run an audit and exit with a result code, for scheduled jobs |
+
+### Data
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Query Holding… | `dev.query` |  | NEW | read-only SQL over items, copies, places, renditions, risks and events |
+| Export Holding as Text Folder… | `dev.exportText` |  | SUITE, NEW | JSON and Markdown files that read well in version control |
+| Show Identification Data | `dev.identification` |  | NEW, DP | the signature rule that matched, the bytes it matched and the alternatives considered |
+| Event Log | `dev.events` |  | DP | every preservation event as a record: take-in, fixity check, copy, rendition, repair, release |
+| Validate Holding File | `dev.validate` |  | SUITE |  |
+
+## Help
+
+Help, examples and about.
+
+### Help
+
+| Command | Id | Shortcut | Origins | Notes |
+|---|---|---|---|---|
+| Help | `help.contents` | `F1` | SUITE |  |
+| Guided Example… | `help.tutorial` |  | NEW | a small made-up family archive: a letter in an old word-processor format, photographs of which one copy is damaged, and a single USB drive |
+| Keyboard Shortcuts | `help.shortcuts` |  | SUITE |  |
+| What Each Status Means | `help.statuses` |  | NEW |  |
+| How Long Things Last… | `help.lifetimes` |  | DP, BAK | plain notes on media and formats, dated, with the uncertainty stated |
+| Common Practice… | `help.practice` |  | ARC, DP, RM, BAK | plain descriptions of the practices the templates follow |
+| Report a Problem… | `help.report` |  | SUITE |  |
+| Check for Updates | `help.updates` |  | SUITE |  |
+| Third-Party Notices | `help.notices` |  | SUITE |  |
+| About Anne's Keep | `help.about` |  | SUITE |  |

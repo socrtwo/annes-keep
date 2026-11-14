@@ -1,0 +1,3695 @@
+{
+  "app": "Anne's Keep",
+  "generatedFrom": "docs/commands-plan.src.txt",
+  "origins": {
+    "NEW": "An Anne's Keep idea",
+    "SUITE": "Shared with the other Anne's Office apps (shell, files, AI providers, recovery)",
+    "ARC": "Archival practice (accession and custody records, original order, arrangement and description, finding aids, appraisal, restrictions)",
+    "DP": "Digital-preservation practice (fixity, format identification and format risk, migration, preservation events, packaging)",
+    "BAK": "Backup practice (several copies on different media in different places, verify after writing, restore drills, media rotation)",
+    "RM": "Records-management practice (retention rules, holds, review, release with a record)",
+    "LIB": "Library cataloguing practice (descriptive fields, agreed forms of names, subject lists)",
+    "RCV": "Data-recovery practice (disk images, read-only handling, salvage of damaged files, old encodings)",
+    "EST": "Estate and succession practice (inventories, letters of instruction, handing files to heirs and successors)",
+    "GENAI": "Generative AI assistants"
+  },
+  "tabs": [
+    {
+      "key": "file",
+      "name": "File",
+      "description": "Create, open, save, protect, print and close holdings; the holding's policy; options",
+      "groups": [
+        {
+          "name": "New",
+          "commands": [
+            {
+              "id": "file.new",
+              "label": "New Holding…",
+              "shortcut": "Ctrl+N",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "an empty holding: no items, no places",
+              "inTabs": true
+            },
+            {
+              "id": "file.newFromFolder",
+              "label": "New Holding from Folder…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "every file under a folder becomes an item where it lies; nothing is moved or changed; the subfolders become the first arrangement",
+              "inTabs": true
+            },
+            {
+              "id": "file.newFromTemplate",
+              "label": "New Holding from Template…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "family archive, household papers, a writer's or researcher's files, a small organization's records, a photograph collection, a finished project; each sets a copy rule, an audit interval and lasting-format choices that you can change",
+              "inTabs": true
+            },
+            {
+              "id": "file.newFromManifest",
+              "label": "New Holding from Manifest…",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "starts from a checksum list or a packaged folder made elsewhere, and verifies it first",
+              "inTabs": true
+            },
+            {
+              "id": "file.newEstate",
+              "label": "New Holding for Someone Else's Files…",
+              "shortcut": "",
+              "origins": [
+                "EST",
+                "NEW"
+              ],
+              "notes": "for files that came to you after a death or a handover; records who gave you what and when, before anything is opened",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Open",
+          "commands": [
+            {
+              "id": "file.open",
+              "label": "Open…",
+              "shortcut": "Ctrl+O",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "recognizes the format by content",
+              "inTabs": true
+            },
+            {
+              "id": "file.openRepair",
+              "label": "Open and Repair…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "rebuilds a damaged holding from its journal and from the catalog copies kept at each place; see ARCHITECTURE-PLAN.md",
+              "inTabs": true
+            },
+            {
+              "id": "file.openReadOnly",
+              "label": "Open Read-Only…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "file.openRecent",
+              "label": "Recent Holdings",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "file.pinned",
+              "label": "Pinned Holdings",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "file.newWindow",
+              "label": "Open in New Window",
+              "shortcut": "Ctrl+Shift+N",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "two holdings side by side",
+              "inTabs": true
+            },
+            {
+              "id": "file.revealInFolder",
+              "label": "Show in Folder",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Save",
+          "commands": [
+            {
+              "id": "file.save",
+              "label": "Save",
+              "shortcut": "Ctrl+S",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "every change is journaled as it is made; Save writes the file",
+              "inTabs": true
+            },
+            {
+              "id": "file.saveAs",
+              "label": "Save As…",
+              "shortcut": "F12",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "file.saveCopy",
+              "label": "Save a Copy…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "file.saveEverywhere",
+              "label": "Save Catalog to Every Place",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "writes the current catalog beside each reachable copy, so that the holding can be rebuilt from any place that survives",
+              "inTabs": true
+            },
+            {
+              "id": "file.versions",
+              "label": "Versions…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "named snapshots of the catalog; compare or restore",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Print and send",
+          "commands": [
+            {
+              "id": "file.print",
+              "label": "Print…",
+              "shortcut": "Ctrl+P",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "file.printPreview",
+              "label": "Print Preview",
+              "shortcut": "Ctrl+F2",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "file.export",
+              "label": "Export…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "see FORMATS-PLAN.md",
+              "inTabs": true
+            },
+            {
+              "id": "file.send",
+              "label": "Send…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "through Anne's Post or the system share sheet",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Holding",
+          "commands": [
+            {
+              "id": "file.properties",
+              "label": "Holding Properties…",
+              "shortcut": "",
+              "origins": [
+                "SUITE",
+                "ARC"
+              ],
+              "notes": "title, whose files these are, what the holding is for, who looks after it",
+              "inTabs": true
+            },
+            {
+              "id": "file.policy",
+              "label": "Holding Policy…",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "BAK",
+                "NEW"
+              ],
+              "notes": "the copy rule, the audit interval, which formats count as lasting, and which risks count as High",
+              "inTabs": true
+            },
+            {
+              "id": "file.statistics",
+              "label": "Holding Statistics",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "items by status and by format, total size, copies by place, risks by kind, audits done and due",
+              "inTabs": true
+            },
+            {
+              "id": "file.protect",
+              "label": "Protect Holding…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "password encryption of the catalog file; the items themselves are not touched",
+              "inTabs": true
+            },
+            {
+              "id": "file.options",
+              "label": "Options…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "file.close",
+              "label": "Close",
+              "shortcut": "Ctrl+W",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "file.exit",
+              "label": "Exit",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "home",
+      "name": "Home",
+      "description": "Editing basics and the everyday loop: go to the next thing that needs attention and deal with it",
+      "groups": [
+        {
+          "name": "Clipboard",
+          "commands": [
+            {
+              "id": "edit.cut",
+              "label": "Cut",
+              "shortcut": "Ctrl+X",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "in descriptions and notes",
+              "inTabs": true
+            },
+            {
+              "id": "edit.copy",
+              "label": "Copy",
+              "shortcut": "Ctrl+C",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "edit.paste",
+              "label": "Paste",
+              "shortcut": "Ctrl+V",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "edit.copyDescription",
+              "label": "Copy Description",
+              "shortcut": "Ctrl+Shift+C",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "the selected item's catalog entry as text",
+              "inTabs": true
+            },
+            {
+              "id": "edit.copyFingerprint",
+              "label": "Copy Fingerprint",
+              "shortcut": "",
+              "origins": [
+                "DP"
+              ],
+              "notes": "the SHA-256 of the selected item, for comparing by hand or for sending to someone who holds a copy",
+              "inTabs": true
+            },
+            {
+              "id": "edit.pasteDescription",
+              "label": "Paste Description",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "applies copied catalog fields to the selected items; what would be overwritten is listed first",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Undo",
+          "commands": [
+            {
+              "id": "edit.undo",
+              "label": "Undo",
+              "shortcut": "Ctrl+Z",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "undoes changes to the catalog; a copy already written to a place is removed only by its own command",
+              "inTabs": true
+            },
+            {
+              "id": "edit.redo",
+              "label": "Redo",
+              "shortcut": "Ctrl+Y",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "edit.history",
+              "label": "History…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "the journal: who changed what and when",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Find",
+          "commands": [
+            {
+              "id": "edit.find",
+              "label": "Find…",
+              "shortcut": "Ctrl+F",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "in the active pane",
+              "inTabs": true
+            },
+            {
+              "id": "edit.findAll",
+              "label": "Find in Whole Holding…",
+              "shortcut": "Ctrl+Shift+F",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "names, descriptions, the text inside items, notes, formats and fingerprints at once",
+              "inTabs": true
+            },
+            {
+              "id": "edit.replace",
+              "label": "Replace…",
+              "shortcut": "Ctrl+H",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "in descriptions and notes only; items are never changed",
+              "inTabs": true
+            },
+            {
+              "id": "edit.goTo",
+              "label": "Go To…",
+              "shortcut": "Ctrl+G",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "an item number, a place, a date",
+              "inTabs": true
+            },
+            {
+              "id": "edit.selectSimilar",
+              "label": "Select Similar",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "every item with the same format, status, risk or place as the selected one",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Work queue",
+          "commands": [
+            {
+              "id": "nav.nextAttention",
+              "label": "Next Item Needing Attention",
+              "shortcut": "F8",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "the next Damaged, Missing, At Risk or Stale item, worst first",
+              "inTabs": true
+            },
+            {
+              "id": "nav.prevAttention",
+              "label": "Previous Item Needing Attention",
+              "shortcut": "Shift+F8",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "nav.nextUnassessed",
+              "label": "Next Unassessed Item",
+              "shortcut": "Ctrl+F8",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "nav.nextUndescribed",
+              "label": "Next Undescribed Item",
+              "shortcut": "Ctrl+Shift+F8",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "no title, no date or no description",
+              "inTabs": true
+            },
+            {
+              "id": "nav.showCopies",
+              "label": "Show Copies of Item",
+              "shortcut": "Ctrl+J",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "where every copy of the selected item is, and when each was last verified",
+              "inTabs": true
+            },
+            {
+              "id": "nav.showRenditions",
+              "label": "Show Renditions of Item",
+              "shortcut": "Ctrl+Shift+J",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "nav.back",
+              "label": "Back",
+              "shortcut": "Alt+Left",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "nav.forward",
+              "label": "Forward",
+              "shortcut": "Alt+Right",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "nav.today",
+              "label": "Due Today",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "audits, places to verify, holds that end and keep-until dates that have been reached",
+              "inTabs": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "intake",
+      "name": "Take In",
+      "description": "Bring files, folders, old disks, accounts and other people's papers into the holding, and record where each came from",
+      "groups": [
+        {
+          "name": "Add",
+          "commands": [
+            {
+              "id": "intake.addFiles",
+              "label": "Add Files…",
+              "shortcut": "Ctrl+Shift+O",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "the files stay where they are; each is fingerprinted and never altered",
+              "inTabs": true
+            },
+            {
+              "id": "intake.addFolder",
+              "label": "Add Folder…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "intake.watch",
+              "label": "Watch Folder…",
+              "shortcut": "",
+              "origins": [
+                "NEW",
+                "BAK"
+              ],
+              "notes": "new and changed files in a folder are offered to the holding; nothing is taken in silently",
+              "inTabs": true
+            },
+            {
+              "id": "intake.scan",
+              "label": "Add from Scanner or Camera…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "through Anne's Lens; the original image is kept",
+              "inTabs": true
+            },
+            {
+              "id": "intake.fromDevice",
+              "label": "Add from Another Device…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "a phone, a camera, a card or a drive; lists what is new since the last time",
+              "inTabs": true
+            },
+            {
+              "id": "intake.mailbox",
+              "label": "Add Mailbox…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "a mailbox file, or an account folder through Anne's Post; messages and attachments become items in a group",
+              "inTabs": true
+            },
+            {
+              "id": "intake.captureWeb",
+              "label": "Capture Web Site…",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "saves pages as they are now, with their pictures and the time, through Anne's Loom; for your own site or for pages you rely on",
+              "inTabs": true
+            },
+            {
+              "id": "intake.accountExport",
+              "label": "Add Account Export…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "the archive file a web service gives you when you ask for your data; its parts are listed and identified",
+              "inTabs": true
+            },
+            {
+              "id": "intake.addPhysical",
+              "label": "Add Item with No File…",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "a box, an album, a tape, a paper file; described and located like any other item, so that the holding also covers what is not digital",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Old media",
+          "commands": [
+            {
+              "id": "intake.diskImage",
+              "label": "Read Disk Image…",
+              "shortcut": "",
+              "origins": [
+                "RCV"
+              ],
+              "notes": "opens an image of a floppy disk, a hard disk, a card or an optical disc read-only and lists its files, including deleted ones that the suite recovery engines can find",
+              "inTabs": true
+            },
+            {
+              "id": "intake.makeImage",
+              "label": "Make Disk Image…",
+              "shortcut": "",
+              "origins": [
+                "RCV"
+              ],
+              "notes": "desktop builds; copies a whole card or drive to an image file before anything else is done, and fingerprints it",
+              "inTabs": true
+            },
+            {
+              "id": "intake.openArchive",
+              "label": "Open Archive File…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "ZIP, TAR and older archive formats; damaged ones through the suite's ZIP salvage; the archive stays an item and its contents become parts",
+              "inTabs": true
+            },
+            {
+              "id": "intake.encodings",
+              "label": "Old Text Encodings…",
+              "shortcut": "",
+              "origins": [
+                "RCV",
+                "NEW"
+              ],
+              "notes": "file names and text in older character sets shown correctly; the bytes are not changed",
+              "inTabs": true
+            },
+            {
+              "id": "intake.unknown",
+              "label": "Unidentified Files…",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "RCV"
+              ],
+              "notes": "the files no rule could identify, with what is known about each: first bytes, readable strings, size, date, neighbors",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Record",
+          "commands": [
+            {
+              "id": "intake.accession",
+              "label": "Accession Record…",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "what came in, from whom, when and on what terms; one record for each batch",
+              "inTabs": true
+            },
+            {
+              "id": "intake.custody",
+              "label": "Custody Note…",
+              "shortcut": "",
+              "origins": [
+                "ARC",
+                "RCV"
+              ],
+              "notes": "who held these files before you and how they reached you",
+              "inTabs": true
+            },
+            {
+              "id": "intake.originalOrder",
+              "label": "Keep Original Order",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "the folder layout as it arrived is recorded, however the items are arranged later",
+              "inTabs": true
+            },
+            {
+              "id": "intake.thirdParty",
+              "label": "Mark as Held for Someone Else…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "files you hold for another person; their wishes and how to reach them are recorded",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Sort out",
+          "commands": [
+            {
+              "id": "intake.duplicates",
+              "label": "Find Duplicates",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "identical files by fingerprint; the same content in different containers is listed separately as likely duplicates",
+              "inTabs": true
+            },
+            {
+              "id": "intake.versions",
+              "label": "Find Versions",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "drafts and later saves of the same work, by name, date and shared content; grouped, never merged",
+              "inTabs": true
+            },
+            {
+              "id": "intake.group",
+              "label": "Group as One Item…",
+              "shortcut": "Ctrl+Shift+G",
+              "origins": [
+                "ARC",
+                "NEW"
+              ],
+              "notes": "files that make sense only together: a page layout and its pictures, a web site folder, a database and its attachments",
+              "inTabs": true
+            },
+            {
+              "id": "intake.ungroup",
+              "label": "Ungroup",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "intake.exclude",
+              "label": "Leave Out…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "patterns for files that are never taken in: caches, thumbnails, system files; the list is shown and can be changed",
+              "inTabs": true
+            },
+            {
+              "id": "intake.refresh",
+              "label": "Refresh from Disk",
+              "shortcut": "F5",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "re-reads the folders the holding covers; new, changed, moved and vanished files are listed",
+              "inTabs": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "describe",
+      "name": "Describe",
+      "description": "Say what each thing is, so that someone who never met you can find it and understand it",
+      "groups": [
+        {
+          "name": "Catalog",
+          "commands": [
+            {
+              "id": "describe.details",
+              "label": "Description…",
+              "shortcut": "Alt+Enter",
+              "origins": [
+                "ARC",
+                "LIB"
+              ],
+              "notes": "title, who made it, dates, what it is, how much there is, language",
+              "inTabs": true
+            },
+            {
+              "id": "describe.names",
+              "label": "People and Organizations…",
+              "shortcut": "",
+              "origins": [
+                "LIB"
+              ],
+              "notes": "names in one agreed form with their variants kept; can be linked to persons in an Anne's Chart tree",
+              "inTabs": true
+            },
+            {
+              "id": "describe.places",
+              "label": "Places Named…",
+              "shortcut": "",
+              "origins": [
+                "LIB"
+              ],
+              "notes": "the places an item is about, as distinct from the places where its copies are stored",
+              "inTabs": true
+            },
+            {
+              "id": "describe.subjects",
+              "label": "Subjects and Tags…",
+              "shortcut": "",
+              "origins": [
+                "LIB"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "describe.dates",
+              "label": "Dates…",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "exact, approximate, a range, or before and after; the file's own dates are kept separately and never overwritten",
+              "inTabs": true
+            },
+            {
+              "id": "describe.rights",
+              "label": "Rights and Restrictions…",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "who holds the rights as far as you know, who may see the item and from when",
+              "inTabs": true
+            },
+            {
+              "id": "describe.note",
+              "label": "Add Note…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "describe.fillDown",
+              "label": "Fill Down",
+              "shortcut": "Ctrl+D",
+              "origins": [
+                "SUITE",
+                "NEW"
+              ],
+              "notes": "copies a field to the selected items",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Arrange",
+          "commands": [
+            {
+              "id": "describe.arrangement",
+              "label": "Arrangement",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "the holding as groups within groups; an item appears once, wherever its files are",
+              "inTabs": true
+            },
+            {
+              "id": "describe.newGroup",
+              "label": "New Group…",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "describe.move",
+              "label": "Move to Group…",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "changes the arrangement only; no file moves",
+              "inTabs": true
+            },
+            {
+              "id": "describe.inherit",
+              "label": "Inherit Description",
+              "shortcut": "",
+              "origins": [
+                "ARC",
+                "NEW"
+              ],
+              "notes": "a group's creator, dates, rights and restrictions apply to everything in it unless an item says otherwise",
+              "inTabs": true
+            },
+            {
+              "id": "describe.number",
+              "label": "Number Items…",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "reference numbers that stay the same when items are rearranged",
+              "inTabs": true
+            },
+            {
+              "id": "describe.filter",
+              "label": "Sort and Filter…",
+              "shortcut": "Ctrl+Shift+L",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "by status, format, date, place, group, risk or any catalog field",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "From the files",
+          "commands": [
+            {
+              "id": "describe.readEmbedded",
+              "label": "Read Embedded Details",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "titles, authors, dates, captions, keywords and map positions already inside the files, shown beside your own description",
+              "inTabs": true
+            },
+            {
+              "id": "describe.useEmbedded",
+              "label": "Use Embedded Details…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "copies chosen fields into the catalog; the file is not changed",
+              "inTabs": true
+            },
+            {
+              "id": "describe.fromNames",
+              "label": "Describe from File Names…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "a pattern pulls dates, numbers and names out of file and folder names",
+              "inTabs": true
+            },
+            {
+              "id": "describe.ocr",
+              "label": "Recognize Text (OCR)",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "the suite OCR engine; the text is an aid for search, the picture stays the item",
+              "inTabs": true
+            },
+            {
+              "id": "describe.extractText",
+              "label": "Extract Text for Search",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "through the sister apps' readers",
+              "inTabs": true
+            },
+            {
+              "id": "describe.linkPerson",
+              "label": "Link to Person in Tree…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "an Anne's Chart person or a GEDCOM record",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Quality",
+          "commands": [
+            {
+              "id": "describe.check",
+              "label": "Description Check",
+              "shortcut": "",
+              "origins": [
+                "ARC",
+                "NEW"
+              ],
+              "notes": "items with no title, no date, no creator or no rights note; groups about which nothing is said",
+              "inTabs": true
+            },
+            {
+              "id": "describe.authority",
+              "label": "Name Authority…",
+              "shortcut": "",
+              "origins": [
+                "LIB"
+              ],
+              "notes": "merges spellings of the same person, place or organization",
+              "inTabs": true
+            },
+            {
+              "id": "describe.lists",
+              "label": "Controlled Lists…",
+              "shortcut": "",
+              "origins": [
+                "LIB"
+              ],
+              "notes": "your own lists of subjects, record types and places",
+              "inTabs": true
+            },
+            {
+              "id": "describe.confidential",
+              "label": "Mark as Confidential",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "left out of handover packets unless you say otherwise, and out of every AI request",
+              "inTabs": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "assess",
+      "name": "Assess",
+      "description": "Tests the app computes itself, without AI: what is this, does it open, is it whole, what threatens it",
+      "groups": [
+        {
+          "name": "Run",
+          "commands": [
+            {
+              "id": "assess.all",
+              "label": "Assess All",
+              "shortcut": "F9",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "every check below; results in the Risks pane",
+              "inTabs": true
+            },
+            {
+              "id": "assess.selection",
+              "label": "Assess Selection",
+              "shortcut": "Shift+F9",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "assess.onIntake",
+              "label": "Assess on Take-In",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "toggle; default on",
+              "inTabs": true
+            },
+            {
+              "id": "assess.stop",
+              "label": "Stop Assessment",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "long runs can be paused and resumed",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "What it is",
+          "commands": [
+            {
+              "id": "assess.identify",
+              "label": "Identify Format",
+              "shortcut": "",
+              "origins": [
+                "DP"
+              ],
+              "notes": "by content: signatures and structure, not the file extension; the rule that matched is shown",
+              "inTabs": true
+            },
+            {
+              "id": "assess.extension",
+              "label": "Extension Mismatch",
+              "shortcut": "",
+              "origins": [
+                "DP"
+              ],
+              "notes": "files whose name says one format and whose content is another",
+              "inTabs": true
+            },
+            {
+              "id": "assess.census",
+              "label": "Format Census",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "how many items and how much data there are in each format and version",
+              "inTabs": true
+            },
+            {
+              "id": "assess.formatNotes",
+              "label": "Format Notes",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "for the selected format: whether its specification is public, what reads it, what it depends on, how old it is",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Whether it opens",
+          "commands": [
+            {
+              "id": "assess.open",
+              "label": "Open Check",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "each item is read by the suite's reader for its type; items that fail, or that open only in part, are listed with the reason",
+              "inTabs": true
+            },
+            {
+              "id": "assess.structure",
+              "label": "Structure Check",
+              "shortcut": "",
+              "origins": [
+                "DP"
+              ],
+              "notes": "the format's own rules: a well-formed container, a complete index, lengths that agree with what is stated",
+              "inTabs": true
+            },
+            {
+              "id": "assess.locks",
+              "label": "Lock Check",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "passwords, encryption and usage restrictions; such items cannot be kept readable without the key",
+              "inTabs": true
+            },
+            {
+              "id": "assess.dependencies",
+              "label": "Dependency Check",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "fonts that are not embedded, pictures and data linked from other files, macros, pages that load from the web",
+              "inTabs": true
+            },
+            {
+              "id": "assess.complete",
+              "label": "Completeness Check",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "a group has every part it refers to; a numbered series has no gaps",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Whether it is whole",
+          "commands": [
+            {
+              "id": "assess.fixity",
+              "label": "Fixity Check",
+              "shortcut": "",
+              "origins": [
+                "DP"
+              ],
+              "notes": "every reachable copy is hashed again and compared with its recorded fingerprint",
+              "inTabs": true
+            },
+            {
+              "id": "assess.damage",
+              "label": "Damage Report",
+              "shortcut": "",
+              "origins": [
+                "RCV",
+                "NEW"
+              ],
+              "notes": "for an item that no longer matches or no longer opens: which part is affected and which copy is intact",
+              "inTabs": true
+            },
+            {
+              "id": "assess.dates",
+              "label": "Date Check",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "file dates, embedded dates and described dates that cannot all be right",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "What threatens it",
+          "commands": [
+            {
+              "id": "assess.formatRisk",
+              "label": "Format Risk",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "each format rated from stated facts in the format register, with the reasons listed",
+              "inTabs": true
+            },
+            {
+              "id": "assess.copyRule",
+              "label": "Copy Rule Check",
+              "shortcut": "",
+              "origins": [
+                "BAK",
+                "NEW"
+              ],
+              "notes": "items with fewer copies, fewer kinds of medium or fewer places than the policy asks for",
+              "inTabs": true
+            },
+            {
+              "id": "assess.mediaAge",
+              "label": "Media Age Check",
+              "shortcut": "",
+              "origins": [
+                "BAK",
+                "DP"
+              ],
+              "notes": "copies on media older than the service life you set for that kind",
+              "inTabs": true
+            },
+            {
+              "id": "assess.names",
+              "label": "File Name Check",
+              "shortcut": "",
+              "origins": [
+                "DP"
+              ],
+              "notes": "names that will not survive a move to another system: reserved characters, length, names that differ only by case, mixed Unicode forms",
+              "inTabs": true
+            },
+            {
+              "id": "assess.singlePoint",
+              "label": "Single Point Check",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "everything that would be lost if one named place, device, account or password were lost",
+              "inTabs": true
+            },
+            {
+              "id": "assess.stranger",
+              "label": "Stranger Test",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "for each item: could a person with no special software read it, with a text editor, a web browser or an unzip tool? The share of the holding that passes is shown",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Risks",
+          "commands": [
+            {
+              "id": "assess.riskDetails",
+              "label": "Risk Details…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "what the risk is, the facts it rests on, and the commands that would reduce it",
+              "inTabs": true
+            },
+            {
+              "id": "assess.accept",
+              "label": "Accept Risk…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "you decide to live with a risk; the reason is recorded, and the risk is shown again at every audit",
+              "inTabs": true
+            },
+            {
+              "id": "assess.reopen",
+              "label": "Reopen Risk",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "assess.register",
+              "label": "Edit Format Register…",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "the facts behind Format Risk are data that you can read, correct and date",
+              "inTabs": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "copy",
+      "name": "Copies",
+      "description": "Where the copies are, what they are on, and whether each one is still good",
+      "groups": [
+        {
+          "name": "Places",
+          "commands": [
+            {
+              "id": "copy.places",
+              "label": "Places…",
+              "shortcut": "",
+              "origins": [
+                "BAK",
+                "NEW"
+              ],
+              "notes": "every place a copy can live: this device, a drive, a disc, a cloud folder, a safe, another person's house",
+              "inTabs": true
+            },
+            {
+              "id": "copy.newPlace",
+              "label": "New Place…",
+              "shortcut": "",
+              "origins": [
+                "BAK"
+              ],
+              "notes": "name, kind of medium, where it is, who can reach it, when it went into service",
+              "inTabs": true
+            },
+            {
+              "id": "copy.placeDetails",
+              "label": "Place Details…",
+              "shortcut": "",
+              "origins": [
+                "BAK"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "copy.offsite",
+              "label": "Mark Place as Away from Home",
+              "shortcut": "",
+              "origins": [
+                "BAK"
+              ],
+              "notes": "counts toward the away-from-home part of the copy rule",
+              "inTabs": true
+            },
+            {
+              "id": "copy.retire",
+              "label": "Retire Place…",
+              "shortcut": "",
+              "origins": [
+                "BAK",
+                "NEW"
+              ],
+              "notes": "lists what would be left with too few copies, and refuses until those are copied elsewhere or you say otherwise",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Make copies",
+          "commands": [
+            {
+              "id": "copy.send",
+              "label": "Send Copy To…",
+              "shortcut": "Ctrl+Shift+S",
+              "origins": [
+                "BAK",
+                "NEW"
+              ],
+              "notes": "writes the selected items to a place, reads them back and compares them before the copy is counted",
+              "inTabs": true
+            },
+            {
+              "id": "copy.fulfill",
+              "label": "Complete the Copy Rule…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "works out the fewest copies to write, and where, so that every item meets the policy",
+              "inTabs": true
+            },
+            {
+              "id": "copy.manifest",
+              "label": "Write Manifest",
+              "shortcut": "",
+              "origins": [
+                "DP"
+              ],
+              "notes": "a plain-text list of file names and fingerprints beside the copy, readable and checkable without this app",
+              "inTabs": true
+            },
+            {
+              "id": "copy.forPerson",
+              "label": "Copy for a Person…",
+              "shortcut": "",
+              "origins": [
+                "EST",
+                "NEW"
+              ],
+              "notes": "a chosen part of the holding for one relative or colleague, with its own index",
+              "inTabs": true
+            },
+            {
+              "id": "copy.move",
+              "label": "Move Copy…",
+              "shortcut": "",
+              "origins": [
+                "BAK"
+              ],
+              "notes": "copy, verify, then remove the old one; never the other way round",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Check copies",
+          "commands": [
+            {
+              "id": "copy.verify",
+              "label": "Verify Place",
+              "shortcut": "Ctrl+Shift+V",
+              "origins": [
+                "DP",
+                "BAK"
+              ],
+              "notes": "hashes every file at a place and compares; can be run on any device the place is attached to",
+              "inTabs": true
+            },
+            {
+              "id": "copy.verifySample",
+              "label": "Verify by Sample…",
+              "shortcut": "",
+              "origins": [
+                "BAK",
+                "NEW"
+              ],
+              "notes": "a random share of a large place now, and the rest over the following runs",
+              "inTabs": true
+            },
+            {
+              "id": "copy.compare",
+              "label": "Compare Two Places",
+              "shortcut": "",
+              "origins": [
+                "BAK"
+              ],
+              "notes": "what one has that the other lacks, and what differs",
+              "inTabs": true
+            },
+            {
+              "id": "copy.drill",
+              "label": "Restore Drill…",
+              "shortcut": "",
+              "origins": [
+                "BAK"
+              ],
+              "notes": "brings a sample back from a place to a scratch folder and opens it, to show that the copy can really be used",
+              "inTabs": true
+            },
+            {
+              "id": "copy.recordCheck",
+              "label": "Record Outside Check…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "someone else verified a copy with its manifest and told you the result",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Mend",
+          "commands": [
+            {
+              "id": "copy.heal",
+              "label": "Heal from Another Copy",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "replaces a damaged copy with a verified intact one; the damaged file is set aside, not deleted, until you say so",
+              "inTabs": true
+            },
+            {
+              "id": "copy.relink",
+              "label": "Find Moved Files",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "files that were renamed or moved are recognized by fingerprint and relinked",
+              "inTabs": true
+            },
+            {
+              "id": "copy.lost",
+              "label": "Report Lost Place…",
+              "shortcut": "",
+              "origins": [
+                "BAK",
+                "NEW"
+              ],
+              "notes": "a drive failed, a disc is unreadable, an account was closed: every copy there is marked gone and the copy rule is checked again",
+              "inTabs": true
+            },
+            {
+              "id": "copy.recoveryRecords",
+              "label": "Recovery Records…",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "extra data stored beside a copy, from which a limited amount of damage can be repaired without another copy",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Schedule",
+          "commands": [
+            {
+              "id": "copy.schedule",
+              "label": "Audit Schedule…",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "BAK"
+              ],
+              "notes": "how often each place is verified; reminders through Anne's Post or the system calendar",
+              "inTabs": true
+            },
+            {
+              "id": "copy.audit",
+              "label": "Run Audit Now",
+              "shortcut": "Ctrl+F9",
+              "origins": [
+                "DP"
+              ],
+              "notes": "verifies what is due, assesses the risks again and writes an audit record",
+              "inTabs": true
+            },
+            {
+              "id": "copy.auditRecords",
+              "label": "Audit Records",
+              "shortcut": "",
+              "origins": [
+                "DP"
+              ],
+              "notes": "every audit: who ran it, what was checked, what was found, what was done",
+              "inTabs": true
+            },
+            {
+              "id": "copy.mediaLog",
+              "label": "Media Log…",
+              "shortcut": "",
+              "origins": [
+                "BAK"
+              ],
+              "notes": "each drive and disc: bought, first used, errors seen, replaced",
+              "inTabs": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "rendition",
+      "name": "Renditions",
+      "description": "Make copies in formats likely to stay readable, and test that each one still says what the original says",
+      "groups": [
+        {
+          "name": "Plan",
+          "commands": [
+            {
+              "id": "rendition.plan",
+              "label": "Rendition Plan…",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "for the selection: which formats would be made from which, by which writer, what each is known to lose, and the space needed",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.targets",
+              "label": "Lasting Formats…",
+              "shortcut": "",
+              "origins": [
+                "DP"
+              ],
+              "notes": "the holding's choice of target format for each kind of content",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.dryRun",
+              "label": "Dry Run",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "converts a sample and reports the comparison before anything is added to the holding",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.lossPreview",
+              "label": "What Would Be Lost…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "the known limits of a conversion, stated before it runs: the features the target format cannot hold",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Make",
+          "commands": [
+            {
+              "id": "rendition.make",
+              "label": "Make Rendition…",
+              "shortcut": "Ctrl+R",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "writes a new file in a lasting format through the sister app that owns the type; the original is kept and never changed",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.text",
+              "label": "Make Plain-Text Rendition",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "the words alone, in UTF-8, as the rendition of last resort",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.pageImages",
+              "label": "Make Page-Image Rendition",
+              "shortcut": "",
+              "origins": [
+                "DP"
+              ],
+              "notes": "one picture for each page, for documents whose look matters and whose format is at risk",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.access",
+              "label": "Make Reading Copy…",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "a small, convenient copy for everyday use, kept apart from the preservation copy",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.embed",
+              "label": "Embed What It Depends On…",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "a rendition with its fonts, linked pictures and linked data inside it",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.rename",
+              "label": "Make File Names Safe…",
+              "shortcut": "",
+              "origins": [
+                "DP"
+              ],
+              "notes": "safe names for the renditions or for a copy; the original names are kept in the catalog",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.batch",
+              "label": "Batch Make…",
+              "shortcut": "",
+              "origins": [
+                "SUITE",
+                "NEW"
+              ],
+              "notes": "runs a plan over many items; can be paused and resumed",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Compare",
+          "commands": [
+            {
+              "id": "rendition.compare",
+              "label": "Sameness Check",
+              "shortcut": "Ctrl+Shift+R",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "compares a rendition with its original by content: words, page count, pixels, cell values and formula results, rows, playing time; no AI",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.lossStatement",
+              "label": "Loss Statement",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "what the comparison found different, item by item, in plain words",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.acceptLoss",
+              "label": "Accept Loss…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "you decide that a rendition is good enough; the differences you accepted are recorded with it",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.reject",
+              "label": "Reject Rendition",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "the rendition is removed from the holding and the reason is kept",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.sideBySide",
+              "label": "View Side by Side",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "original and rendition together, with the differences marked",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.roundTrip",
+              "label": "Round-Trip Check",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "convert, convert back, and compare with the original",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Repair",
+          "commands": [
+            {
+              "id": "rendition.repair",
+              "label": "Repair Item…",
+              "shortcut": "",
+              "origins": [
+                "SUITE",
+                "RCV"
+              ],
+              "notes": "hands a damaged file to the suite recovery engine of its type; the repaired file is added as a rendition and the damaged original stays",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.salvageText",
+              "label": "Recover Text Only",
+              "shortcut": "",
+              "origins": [
+                "RCV"
+              ],
+              "notes": "whatever words can still be read from a file that will not open",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.salvagePictures",
+              "label": "Recover Pictures Only",
+              "shortcut": "",
+              "origins": [
+                "RCV"
+              ],
+              "notes": "through Anne's Lens",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.repairReport",
+              "label": "Repair Report",
+              "shortcut": "",
+              "origins": [
+                "RCV",
+                "NEW"
+              ],
+              "notes": "what was recovered, what was not, and how the repaired file differs from the damaged one",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Lineage",
+          "commands": [
+            {
+              "id": "rendition.lineage",
+              "label": "Rendition Lineage",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "which file was made from which, by what tool and version, and when",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.replace",
+              "label": "Replace Rendition…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "a better conversion exists; the earlier one is kept in history",
+              "inTabs": true
+            },
+            {
+              "id": "rendition.setMaster",
+              "label": "Set as Preservation Copy",
+              "shortcut": "",
+              "origins": [
+                "ARC",
+                "DP"
+              ],
+              "notes": "which file of an item the copy rule and the audits protect first",
+              "inTabs": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "retain",
+      "name": "Retain",
+      "description": "Decide how long to keep things, hold what must not go, and let go on the record",
+      "groups": [
+        {
+          "name": "Rules",
+          "commands": [
+            {
+              "id": "retain.until",
+              "label": "Keep Until…",
+              "shortcut": "",
+              "origins": [
+                "RM"
+              ],
+              "notes": "a date, an event (so many years after filing, when a matter closes) or always",
+              "inTabs": true
+            },
+            {
+              "id": "retain.rules",
+              "label": "Retention Rules…",
+              "shortcut": "",
+              "origins": [
+                "RM"
+              ],
+              "notes": "rules by group or record type; the app ships with none that state a legal period",
+              "inTabs": true
+            },
+            {
+              "id": "retain.apply",
+              "label": "Apply Rule…",
+              "shortcut": "",
+              "origins": [
+                "RM"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "retain.why",
+              "label": "Why Is This Kept?",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "the rule, hold or note that explains an item's keep-until date",
+              "inTabs": true
+            },
+            {
+              "id": "retain.appraise",
+              "label": "Worth Keeping…",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "a recorded judgment of the lasting value of an item or group, and the reason",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Hold",
+          "commands": [
+            {
+              "id": "retain.hold",
+              "label": "Place Hold…",
+              "shortcut": "",
+              "origins": [
+                "RM"
+              ],
+              "notes": "nothing under a hold can be released or have its copies reduced, whatever its date",
+              "inTabs": true
+            },
+            {
+              "id": "retain.liftHold",
+              "label": "Lift Hold…",
+              "shortcut": "",
+              "origins": [
+                "RM"
+              ],
+              "notes": "records who lifted it and why",
+              "inTabs": true
+            },
+            {
+              "id": "retain.holds",
+              "label": "Show Holds",
+              "shortcut": "",
+              "origins": [
+                "RM"
+              ],
+              "notes": "",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Review",
+          "commands": [
+            {
+              "id": "retain.due",
+              "label": "Due for Review",
+              "shortcut": "",
+              "origins": [
+                "RM"
+              ],
+              "notes": "items whose keep-until date has passed; nothing happens to them without you",
+              "inTabs": true
+            },
+            {
+              "id": "retain.extend",
+              "label": "Extend…",
+              "shortcut": "",
+              "origins": [
+                "RM"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "retain.calendar",
+              "label": "Review Calendar",
+              "shortcut": "",
+              "origins": [
+                "RM",
+                "NEW"
+              ],
+              "notes": "",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Let go",
+          "commands": [
+            {
+              "id": "retain.release",
+              "label": "Release…",
+              "shortcut": "",
+              "origins": [
+                "RM",
+                "ARC",
+                "NEW"
+              ],
+              "notes": "a decision not to keep an item any longer; the reason, the date and the fingerprint stay in the catalog",
+              "inTabs": true
+            },
+            {
+              "id": "retain.releaseDuplicates",
+              "label": "Release Duplicates…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "only byte-identical files, only after a fresh fixity check, and never the last copy",
+              "inTabs": true
+            },
+            {
+              "id": "retain.remove",
+              "label": "Remove Released Files…",
+              "shortcut": "",
+              "origins": [
+                "RM"
+              ],
+              "notes": "deletes the files of released items from the places you choose, after a count and a confirmation",
+              "inTabs": true
+            },
+            {
+              "id": "retain.record",
+              "label": "Release Record",
+              "shortcut": "",
+              "origins": [
+                "RM"
+              ],
+              "notes": "a list of what was released, when, by whom and why, with fingerprints",
+              "inTabs": true
+            },
+            {
+              "id": "retain.restore",
+              "label": "Restore Released Item",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "possible while a copy still exists anywhere",
+              "inTabs": true
+            },
+            {
+              "id": "retain.transfer",
+              "label": "Transfer Out…",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "the item went to someone else: a relative, an archive, a successor; the holding remembers where",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Private things",
+          "commands": [
+            {
+              "id": "retain.restrict",
+              "label": "Restrict Until…",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "not to be opened or passed on before a date or an event",
+              "inTabs": true
+            },
+            {
+              "id": "retain.living",
+              "label": "Living People…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "marks items about living people by the suite's rule, so that they can be left out of what is shared",
+              "inTabs": true
+            },
+            {
+              "id": "retain.patterns",
+              "label": "Sensitive Patterns…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "account numbers, identity numbers and the like, found on the device by the app's own pattern rules",
+              "inTabs": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "handover",
+      "name": "Hand Over",
+      "description": "Make the holding usable by someone else: a guide, a packet, a deposit, and a plain account of what is here and how to open it",
+      "groups": [
+        {
+          "name": "Guide",
+          "commands": [
+            {
+              "id": "handover.findingAid",
+              "label": "Finding Aid…",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "the arrangement with its descriptions, as a document a stranger can read from the top",
+              "inTabs": true
+            },
+            {
+              "id": "handover.itemList",
+              "label": "Item List…",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "every item with its number, title, dates, format, size and where its copies are; to Anne's Grid, PDF or print",
+              "inTabs": true
+            },
+            {
+              "id": "handover.formatGuide",
+              "label": "Format Guide…",
+              "shortcut": "",
+              "origins": [
+                "NEW",
+                "DP"
+              ],
+              "notes": "for each format in the holding: what it is, what opens it today, and where its specification is published",
+              "inTabs": true
+            },
+            {
+              "id": "handover.locations",
+              "label": "Where Everything Is…",
+              "shortcut": "",
+              "origins": [
+                "EST",
+                "NEW"
+              ],
+              "notes": "every place, what is there and who can reach it; no passwords are written",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Packet",
+          "commands": [
+            {
+              "id": "handover.packet",
+              "label": "Build Handover Packet…",
+              "shortcut": "Ctrl+Shift+H",
+              "origins": [
+                "EST",
+                "NEW"
+              ],
+              "notes": "a folder that explains itself: a guide as plain text and as a web page that open on any computer, the item list, and the chosen files with their manifest",
+              "inTabs": true
+            },
+            {
+              "id": "handover.letter",
+              "label": "Letter to Whoever Opens This…",
+              "shortcut": "",
+              "origins": [
+                "EST"
+              ],
+              "notes": "your own words: what this is, what matters most, what may be thrown away, whom to ask",
+              "inTabs": true
+            },
+            {
+              "id": "handover.keys",
+              "label": "Keys and Passwords Note…",
+              "shortcut": "",
+              "origins": [
+                "EST",
+                "NEW"
+              ],
+              "notes": "which items are locked and where the key is kept; the app records the whereabouts, not the key",
+              "inTabs": true
+            },
+            {
+              "id": "handover.wishes",
+              "label": "Wishes…",
+              "shortcut": "",
+              "origins": [
+                "EST"
+              ],
+              "notes": "who should receive which group; this is not a will, and the packet says so",
+              "inTabs": true
+            },
+            {
+              "id": "handover.contacts",
+              "label": "People to Contact…",
+              "shortcut": "",
+              "origins": [
+                "EST"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "handover.test",
+              "label": "Test Packet as a Stranger",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "opens the packet with the holding closed and reports what could not be understood or opened",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Deposit",
+          "commands": [
+            {
+              "id": "handover.bag",
+              "label": "Package for Deposit…",
+              "shortcut": "",
+              "origins": [
+                "DP"
+              ],
+              "notes": "a package with manifests and descriptive data in the published BagIt layout, for an archive, a library or a successor",
+              "inTabs": true
+            },
+            {
+              "id": "handover.exportCatalog",
+              "label": "Export Catalog…",
+              "shortcut": "",
+              "origins": [
+                "LIB",
+                "DP"
+              ],
+              "notes": "the descriptions as CSV, JSON or XML with commonly used field names",
+              "inTabs": true
+            },
+            {
+              "id": "handover.gift",
+              "label": "Gift Checklist…",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "what you are giving and on what terms; a checklist, not a legal document",
+              "inTabs": true
+            },
+            {
+              "id": "handover.receipt",
+              "label": "Record Receipt…",
+              "shortcut": "",
+              "origins": [
+                "ARC",
+                "NEW"
+              ],
+              "notes": "the receiver verified the manifest and reported back; the transfer is recorded",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Reports",
+          "commands": [
+            {
+              "id": "handover.condition",
+              "label": "Condition Report…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "the status of every item, the open risks, the accepted risks and the last audit, on one page and in full",
+              "inTabs": true
+            },
+            {
+              "id": "handover.risks",
+              "label": "Risk Register…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "handover.copyMap",
+              "label": "Copy Map Report…",
+              "shortcut": "",
+              "origins": [
+                "BAK",
+                "NEW"
+              ],
+              "notes": "items against places, as a table or as a diagram through Anne's Chart",
+              "inTabs": true
+            },
+            {
+              "id": "handover.auditReport",
+              "label": "Audit Report…",
+              "shortcut": "",
+              "origins": [
+                "DP"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "handover.changes",
+              "label": "Change Report…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "what changed in the holding between two dates",
+              "inTabs": true
+            },
+            {
+              "id": "handover.renditions",
+              "label": "Rendition Report…",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "every rendition, what it was made from, its comparison and the losses accepted",
+              "inTabs": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "review",
+      "name": "Review",
+      "description": "Look after a holding with other people: comment, assign, sign off, combine",
+      "groups": [
+        {
+          "name": "Comments",
+          "commands": [
+            {
+              "id": "review.comment",
+              "label": "New Comment",
+              "shortcut": "Ctrl+Alt+M",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "on an item, a group, a place or a risk",
+              "inTabs": true
+            },
+            {
+              "id": "review.showComments",
+              "label": "Show Comments",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "review.resolveComment",
+              "label": "Resolve Comment",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "review.assign",
+              "label": "Assign To…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "review.flag",
+              "label": "Flag for Follow-Up",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Sign-off",
+          "commands": [
+            {
+              "id": "review.described",
+              "label": "Mark Described",
+              "shortcut": "",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "a person vouches for the description of an item or group",
+              "inTabs": true
+            },
+            {
+              "id": "review.checked",
+              "label": "Mark Checked",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "NEW"
+              ],
+              "notes": "a second person confirms an accepted loss, an accepted risk or a release; cleared automatically if the item changes afterward",
+              "inTabs": true
+            },
+            {
+              "id": "review.queue",
+              "label": "Review Queue",
+              "shortcut": "",
+              "origins": [
+                "SUITE",
+                "NEW"
+              ],
+              "notes": "decisions waiting for you",
+              "inTabs": true
+            },
+            {
+              "id": "review.twoPerson",
+              "label": "Two-Person Rule…",
+              "shortcut": "",
+              "origins": [
+                "RM",
+                "NEW"
+              ],
+              "notes": "optional: releases and removals need a second person's sign-off",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Combine",
+          "commands": [
+            {
+              "id": "review.compare",
+              "label": "Compare Holdings…",
+              "shortcut": "",
+              "origins": [
+                "SUITE",
+                "NEW"
+              ],
+              "notes": "differences between two copies of a holding",
+              "inTabs": true
+            },
+            {
+              "id": "review.merge",
+              "label": "Merge Holdings…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "two people's catalogs of overlapping files, matched by fingerprint, with conflicting descriptions listed",
+              "inTabs": true
+            },
+            {
+              "id": "review.split",
+              "label": "Split Holding…",
+              "shortcut": "",
+              "origins": [
+                "ARC",
+                "NEW"
+              ],
+              "notes": "a group becomes a holding of its own, for dividing an estate or handing off a project",
+              "inTabs": true
+            },
+            {
+              "id": "review.importDescriptions",
+              "label": "Import Descriptions…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "from another holding, matched by fingerprint",
+              "inTabs": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "view",
+      "name": "View",
+      "description": "Panes, layouts and pictures of the holding",
+      "groups": [
+        {
+          "name": "Views",
+          "commands": [
+            {
+              "id": "view.shelf",
+              "label": "Shelf",
+              "shortcut": "Ctrl+1",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "the arrangement on the left, the items in the middle, description and status on the right",
+              "inTabs": true
+            },
+            {
+              "id": "view.item",
+              "label": "Item View",
+              "shortcut": "Ctrl+2",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "one item shown through the suite's reader for its type, with its copies, renditions and risks",
+              "inTabs": true
+            },
+            {
+              "id": "view.risks",
+              "label": "Risk Board",
+              "shortcut": "Ctrl+3",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "items in columns by status, or risks by kind",
+              "inTabs": true
+            },
+            {
+              "id": "view.copyMap",
+              "label": "Copy Map",
+              "shortcut": "Ctrl+4",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "items down, places across, a mark where a verified copy lies",
+              "inTabs": true
+            },
+            {
+              "id": "view.calendar",
+              "label": "Calendar",
+              "shortcut": "Ctrl+5",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "audits, reviews, holds and restrictions by date",
+              "inTabs": true
+            },
+            {
+              "id": "view.lineage",
+              "label": "Lineage View",
+              "shortcut": "Ctrl+6",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "originals, renditions and repaired files, and what was made from what",
+              "inTabs": true
+            },
+            {
+              "id": "view.timeline",
+              "label": "Timeline View",
+              "shortcut": "Ctrl+7",
+              "origins": [
+                "ARC"
+              ],
+              "notes": "items by the dates they describe",
+              "inTabs": true
+            },
+            {
+              "id": "view.folders",
+              "label": "Folder View",
+              "shortcut": "Ctrl+8",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "the files as they lie on disk at one place",
+              "inTabs": true
+            },
+            {
+              "id": "view.split",
+              "label": "Split View",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "two items, or an original and its rendition, side by side",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Show",
+          "commands": [
+            {
+              "id": "view.risksPane",
+              "label": "Risks Pane",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "view.details",
+              "label": "Details Pane",
+              "shortcut": "F4",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "view.preview",
+              "label": "Preview Pane",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "view.statusMarks",
+              "label": "Status Marks…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "a mark, a word and a color for each status; marks are on by default so that color is not the only signal",
+              "inTabs": true
+            },
+            {
+              "id": "view.thumbnails",
+              "label": "Thumbnails",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "view.zoomIn",
+              "label": "Zoom In",
+              "shortcut": "Ctrl+=",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "view.zoomOut",
+              "label": "Zoom Out",
+              "shortcut": "Ctrl+-",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "view.fitPage",
+              "label": "Fit Page",
+              "shortcut": "Ctrl+0",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "view.fullScreen",
+              "label": "Full Screen",
+              "shortcut": "F11",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Shell",
+          "commands": [
+            {
+              "id": "view.menus",
+              "label": "Menus",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "ribbon, classic menu bar, or both",
+              "inTabs": true
+            },
+            {
+              "id": "view.customizeQat",
+              "label": "Customize Quick Access Bar…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "view.qatAddAll",
+              "label": "Add All Choices to Quick Access Bar",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "view.customizeRibbon",
+              "label": "Customize Ribbon…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "view.customizeKeyboard",
+              "label": "Customize Keyboard…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "view.commandSearch",
+              "label": "Search Commands",
+              "shortcut": "Alt+Q",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "view.theme",
+              "label": "Theme",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "light, dark, high contrast, system",
+              "inTabs": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "tools",
+      "name": "Tools",
+      "description": "Macros, batch work and connections to the other apps",
+      "groups": [
+        {
+          "name": "Automate",
+          "commands": [
+            {
+              "id": "tools.recordMacro",
+              "label": "Record Macro…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "tools.macros",
+              "label": "Macros…",
+              "shortcut": "Alt+F8",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "tools.rules",
+              "label": "Rules…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "your own checks: a pattern, a comparison and a message (for example, every item in one group needs two places away from home)",
+              "inTabs": true
+            },
+            {
+              "id": "tools.jobs",
+              "label": "Background Work…",
+              "shortcut": "",
+              "origins": [
+                "SUITE",
+                "NEW"
+              ],
+              "notes": "hashing, copying and converting in progress; pause, resume, reorder",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Suite",
+          "commands": [
+            {
+              "id": "tools.openInApp",
+              "label": "Open Item in Its App",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "tools.toGrid",
+              "label": "Send Item List to Anne's Grid",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "tools.toBase",
+              "label": "Send Catalog to Anne's Base",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "tools.fromWitness",
+              "label": "Keep the Sources of a Case…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "takes the sources of an Anne's Witness case into the holding and keeps the case's fingerprints in step with the holding's",
+              "inTabs": true
+            },
+            {
+              "id": "tools.fromChart",
+              "label": "Keep a Family Tree's Media…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "the pictures and documents a tree file refers to, with their links to persons",
+              "inTabs": true
+            },
+            {
+              "id": "tools.reminders",
+              "label": "Reminders to Anne's Post",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Data",
+          "commands": [
+            {
+              "id": "tools.import",
+              "label": "Import…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "see FORMATS-PLAN.md",
+              "inTabs": true
+            },
+            {
+              "id": "tools.hash",
+              "label": "Hash Calculator…",
+              "shortcut": "",
+              "origins": [
+                "DP"
+              ],
+              "notes": "fingerprints of any file by several algorithms, and comparison with a pasted value",
+              "inTabs": true
+            },
+            {
+              "id": "tools.verifyManifest",
+              "label": "Verify a Manifest…",
+              "shortcut": "",
+              "origins": [
+                "DP"
+              ],
+              "notes": "checks any folder against any checksum list, with or without a holding",
+              "inTabs": true
+            },
+            {
+              "id": "tools.spelling",
+              "label": "Spelling…",
+              "shortcut": "F7",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "in descriptions and notes",
+              "inTabs": true
+            },
+            {
+              "id": "tools.language",
+              "label": "Language…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "ai",
+      "name": "AI",
+      "description": "Optional helpers that describe, sort and draft. They propose; they never decide, and they never touch a file. See AI-PLAN.md",
+      "groups": [
+        {
+          "name": "Ask",
+          "commands": [
+            {
+              "id": "ai.ask",
+              "label": "Ask the Holding…",
+              "shortcut": "Ctrl+Alt+A",
+              "origins": [
+                "GENAI",
+                "NEW"
+              ],
+              "notes": "answers only from the catalog and the text of the items; every sentence names its items, and \"not in this holding\" is a normal answer",
+              "inTabs": true
+            },
+            {
+              "id": "ai.explainFormat",
+              "label": "Explain This Format",
+              "shortcut": "",
+              "origins": [
+                "GENAI"
+              ],
+              "notes": "general knowledge about a format and its history; labeled as opinion and kept apart from the format register",
+              "inTabs": true
+            },
+            {
+              "id": "ai.explainRisk",
+              "label": "Explain This Risk",
+              "shortcut": "",
+              "origins": [
+                "GENAI"
+              ],
+              "notes": "the computed risk and its reasons restated in plain words; it adds no facts",
+              "inTabs": true
+            },
+            {
+              "id": "ai.explainLoss",
+              "label": "Explain Loss Statement",
+              "shortcut": "",
+              "origins": [
+                "GENAI"
+              ],
+              "notes": "what the listed differences mean for a reader; it cannot change the result of the comparison",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Describe",
+          "commands": [
+            {
+              "id": "ai.describe",
+              "label": "Draft Description",
+              "shortcut": "Ctrl+Alt+D",
+              "origins": [
+                "GENAI",
+                "ARC"
+              ],
+              "notes": "a proposed title and description from the item's content, shown as a draft beside the fields and marked as AI-written until you accept it",
+              "inTabs": true
+            },
+            {
+              "id": "ai.suggestDates",
+              "label": "Suggest Dates",
+              "shortcut": "",
+              "origins": [
+                "GENAI",
+                "NEW"
+              ],
+              "notes": "dates that the content itself states; the app must find each one at the spot named before it is shown",
+              "inTabs": true
+            },
+            {
+              "id": "ai.suggestNames",
+              "label": "Suggest People and Places",
+              "shortcut": "",
+              "origins": [
+                "GENAI",
+                "NEW"
+              ],
+              "notes": "names written in the item, checked the same way; never a name guessed from a face",
+              "inTabs": true
+            },
+            {
+              "id": "ai.describeImage",
+              "label": "Describe Picture",
+              "shortcut": "",
+              "origins": [
+                "GENAI"
+              ],
+              "notes": "what is visible; labeled as description",
+              "inTabs": true
+            },
+            {
+              "id": "ai.transcribe",
+              "label": "Transcribe",
+              "shortcut": "",
+              "origins": [
+                "GENAI"
+              ],
+              "notes": "handwriting, labels on disks and tapes, notes on the backs of photographs; uncertain words are marked",
+              "inTabs": true
+            },
+            {
+              "id": "ai.summarize",
+              "label": "Summarize Item",
+              "shortcut": "",
+              "origins": [
+                "GENAI"
+              ],
+              "notes": "for finding your way; kept apart from the description",
+              "inTabs": true
+            },
+            {
+              "id": "ai.translate",
+              "label": "Translate Description",
+              "shortcut": "",
+              "origins": [
+                "GENAI"
+              ],
+              "notes": "labeled as an AI translation",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Sort",
+          "commands": [
+            {
+              "id": "ai.suggestArrangement",
+              "label": "Suggest Arrangement",
+              "shortcut": "",
+              "origins": [
+                "GENAI",
+                "ARC"
+              ],
+              "notes": "proposed groups for a disorderly folder; the original order is kept whatever you accept",
+              "inTabs": true
+            },
+            {
+              "id": "ai.suggestGroups",
+              "label": "Suggest What Belongs Together",
+              "shortcut": "",
+              "origins": [
+                "GENAI",
+                "NEW"
+              ],
+              "notes": "files that look like parts of one work; proposals for Group as One Item",
+              "inTabs": true
+            },
+            {
+              "id": "ai.related",
+              "label": "Find Related Items",
+              "shortcut": "",
+              "origins": [
+                "GENAI"
+              ],
+              "notes": "by meaning, using the on-device index",
+              "inTabs": true
+            },
+            {
+              "id": "ai.suggestTypes",
+              "label": "Suggest Record Types",
+              "shortcut": "",
+              "origins": [
+                "GENAI",
+                "RM"
+              ],
+              "notes": "letter, invoice, deed, photograph, minutes, so that your retention rules can apply; proposals only",
+              "inTabs": true
+            },
+            {
+              "id": "ai.screenPrivacy",
+              "label": "Screen for Private Information",
+              "shortcut": "",
+              "origins": [
+                "GENAI"
+              ],
+              "notes": "runs on the device only",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Rescue",
+          "commands": [
+            {
+              "id": "ai.guessFormat",
+              "label": "Guess Unidentified Format",
+              "shortcut": "",
+              "origins": [
+                "GENAI",
+                "RCV",
+                "NEW"
+              ],
+              "notes": "proposes what an unidentified file might be; the guess counts only if the app's own reader for that format then opens the file",
+              "inTabs": true
+            },
+            {
+              "id": "ai.suggestRepair",
+              "label": "Suggest Repair Route",
+              "shortcut": "",
+              "origins": [
+                "GENAI",
+                "RCV"
+              ],
+              "notes": "which recovery command to try first for this damage; the app runs nothing by itself",
+              "inTabs": true
+            },
+            {
+              "id": "ai.suggestEncoding",
+              "label": "Suggest Text Encoding",
+              "shortcut": "",
+              "origins": [
+                "GENAI",
+                "RCV"
+              ],
+              "notes": "for garbled old text; the suggestion is tested by decoding, and the bytes are not changed",
+              "inTabs": true
+            },
+            {
+              "id": "ai.readLabel",
+              "label": "Read Media Label",
+              "shortcut": "",
+              "origins": [
+                "GENAI"
+              ],
+              "notes": "a photograph of a disk, tape or box label becomes a proposed description",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Write",
+          "commands": [
+            {
+              "id": "ai.draftFindingAid",
+              "label": "Draft Finding Aid Introduction",
+              "shortcut": "",
+              "origins": [
+                "GENAI",
+                "ARC"
+              ],
+              "notes": "from your descriptions only",
+              "inTabs": true
+            },
+            {
+              "id": "ai.draftFormatGuide",
+              "label": "Draft Format Guide",
+              "shortcut": "",
+              "origins": [
+                "GENAI"
+              ],
+              "notes": "plain-language notes from the facts in the format register; each sentence points to a register entry",
+              "inTabs": true
+            },
+            {
+              "id": "ai.draftLetter",
+              "label": "Draft Handover Letter",
+              "shortcut": "",
+              "origins": [
+                "GENAI",
+                "EST"
+              ],
+              "notes": "a first wording from the points you list; it states no wishes that you did not give",
+              "inTabs": true
+            },
+            {
+              "id": "ai.draftPlan",
+              "label": "Draft Rendition Plan",
+              "shortcut": "",
+              "origins": [
+                "GENAI",
+                "DP"
+              ],
+              "notes": "a plan built only from conversions the app can perform; you edit it and you run it",
+              "inTabs": true
+            },
+            {
+              "id": "ai.draftCondition",
+              "label": "Draft Condition Summary",
+              "shortcut": "",
+              "origins": [
+                "GENAI"
+              ],
+              "notes": "the computed statuses and risks in a few paragraphs",
+              "inTabs": true
+            },
+            {
+              "id": "ai.runOnSelection",
+              "label": "Run on Selection…",
+              "shortcut": "",
+              "origins": [
+                "GENAI"
+              ],
+              "notes": "your own instruction over the selected descriptions; results are proposals",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Providers",
+          "commands": [
+            {
+              "id": "ai.setup",
+              "label": "Set Up AI…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "the suite wizard: on-device, your own computer, free tiers and paid services",
+              "inTabs": true
+            },
+            {
+              "id": "ai.providers",
+              "label": "Providers and Models…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "ai.active",
+              "label": "Active AI",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "ai.privacy",
+              "label": "AI and Privacy…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "what each command may send; set for the holding, for a group and for an item",
+              "inTabs": true
+            },
+            {
+              "id": "ai.ensembleMode",
+              "label": "Several AIs",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "single, master combines answers, or Quaker consensus",
+              "inTabs": true
+            },
+            {
+              "id": "ai.ensembleMembers",
+              "label": "Choose AIs…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "ai.showDeliberation",
+              "label": "Show AI Discussion",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "ai.history",
+              "label": "AI History",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "what was sent, where, and what came back",
+              "inTabs": true
+            },
+            {
+              "id": "ai.stop",
+              "label": "Stop AI",
+              "shortcut": "Ctrl+Alt+.",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "ai.deleteModels",
+              "label": "Delete Downloaded Models",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "dev",
+      "name": "Developer",
+      "description": "Scripting and the holding's data, for people who want to build on it",
+      "groups": [
+        {
+          "name": "Script",
+          "commands": [
+            {
+              "id": "dev.scriptEditor",
+              "label": "Script Editor",
+              "shortcut": "Alt+F11",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "JavaScript macros against the holding object model",
+              "inTabs": true
+            },
+            {
+              "id": "dev.runScript",
+              "label": "Run Script…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "dev.commandLine",
+              "label": "Command Line Options",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "verify a place or run an audit and exit with a result code, for scheduled jobs",
+              "inTabs": true
+            }
+          ]
+        },
+        {
+          "name": "Data",
+          "commands": [
+            {
+              "id": "dev.query",
+              "label": "Query Holding…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "read-only SQL over items, copies, places, renditions, risks and events",
+              "inTabs": true
+            },
+            {
+              "id": "dev.exportText",
+              "label": "Export Holding as Text Folder…",
+              "shortcut": "",
+              "origins": [
+                "SUITE",
+                "NEW"
+              ],
+              "notes": "JSON and Markdown files that read well in version control",
+              "inTabs": true
+            },
+            {
+              "id": "dev.identification",
+              "label": "Show Identification Data",
+              "shortcut": "",
+              "origins": [
+                "NEW",
+                "DP"
+              ],
+              "notes": "the signature rule that matched, the bytes it matched and the alternatives considered",
+              "inTabs": true
+            },
+            {
+              "id": "dev.events",
+              "label": "Event Log",
+              "shortcut": "",
+              "origins": [
+                "DP"
+              ],
+              "notes": "every preservation event as a record: take-in, fixity check, copy, rendition, repair, release",
+              "inTabs": true
+            },
+            {
+              "id": "dev.validate",
+              "label": "Validate Holding File",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "help",
+      "name": "Help",
+      "description": "Help, examples and about",
+      "groups": [
+        {
+          "name": "Help",
+          "commands": [
+            {
+              "id": "help.contents",
+              "label": "Help",
+              "shortcut": "F1",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "help.tutorial",
+              "label": "Guided Example…",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "a small made-up family archive: a letter in an old word-processor format, photographs of which one copy is damaged, and a single USB drive",
+              "inTabs": true
+            },
+            {
+              "id": "help.shortcuts",
+              "label": "Keyboard Shortcuts",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "help.statuses",
+              "label": "What Each Status Means",
+              "shortcut": "",
+              "origins": [
+                "NEW"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "help.lifetimes",
+              "label": "How Long Things Last…",
+              "shortcut": "",
+              "origins": [
+                "DP",
+                "BAK"
+              ],
+              "notes": "plain notes on media and formats, dated, with the uncertainty stated",
+              "inTabs": true
+            },
+            {
+              "id": "help.practice",
+              "label": "Common Practice…",
+              "shortcut": "",
+              "origins": [
+                "ARC",
+                "DP",
+                "RM",
+                "BAK"
+              ],
+              "notes": "plain descriptions of the practices the templates follow",
+              "inTabs": true
+            },
+            {
+              "id": "help.report",
+              "label": "Report a Problem…",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "help.updates",
+              "label": "Check for Updates",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "help.notices",
+              "label": "Third-Party Notices",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            },
+            {
+              "id": "help.about",
+              "label": "About Anne's Keep",
+              "shortcut": "",
+              "origins": [
+                "SUITE"
+              ],
+              "notes": "",
+              "inTabs": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

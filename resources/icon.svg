@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512"><defs><linearGradient id="gkeep" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B8E9C"/><stop offset="1" stop-color="#0A4A53"/></linearGradient></defs>
+  <rect width="512" height="512" rx="116" fill="url(#gkeep)"/>
+  <!-- the vessel: a storage jar with a lid -->
+  <rect x="150" y="120" width="140" height="26" rx="13" fill="#fff"/>
+  <path d="M176 146 H264 V172 C 318 196 344 244 344 300 C 344 362 304 408 220 408 C 136 408 96 362 96 300 C 96 244 122 196 176 172 Z" fill="#fff"/>
+  <!-- the record inside it: a page with lines -->
+  <rect x="166" y="232" width="108" height="136" rx="12" fill="#0F6E7A" opacity=".22" stroke="#0A4A53" stroke-width="6"/>
+  <path d="M186 266 H254 M186 296 H254 M186 326 H232" stroke="#0A4A53" stroke-width="10" stroke-linecap="round" opacity=".6"/>
+  <!-- the second copy, kept apart -->
+  <rect x="368" y="300" width="84" height="108" rx="12" fill="#fff"/>
+  <path d="M386 332 H434 M386 358 H434 M386 384 H418" stroke="#0F6E7A" stroke-width="9" stroke-linecap="round" opacity=".6"/>
+  <!-- the suite quill -->
+  <g>
+    <path d="M436 70 C 376 84 316 140 290 214 C 274 260 268 300 270 338 C 300 300 330 280 360 262 C 330 262 312 262 300 258 C 336 240 368 218 392 188 C 368 190 350 190 336 186 C 378 160 410 120 436 70 Z" fill="#fff" stroke="#0A4A53" stroke-width="8" stroke-linejoin="round" transform="translate(42 -22) scale(.62) translate(190 40)"/>
+  </g></svg>
